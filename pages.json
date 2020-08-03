@@ -1,0 +1,314 @@
+{
+	"pages": [{
+		"path": "pages/index/index",
+		"style": {
+			"navigationBarTitleText": "招老板",
+			"enablePullDownRefresh": true,
+			"navigationBarBackgroundColor": "#015eea",
+			"navigationBarTextStyle": "white",
+			"backgroundColor": "#f2f2f2"
+		}
+	}, {
+		"path": "pages/index/materials-detail",
+		"style": {
+			"navigationBarTitleText": "材料采购详情",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/work/chengbao",
+		"style": {
+			"navigationBarTitleText": "综合承包",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/work/zhaogong",
+		"style": {
+			"navigationBarTitleText": "招工信息",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/work/zhaohuo",
+		"style": {
+			"navigationBarTitleText": "工人找活",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/ershou/index",
+		"style": {
+			"navigationBarTitleText": "二手交易",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/shop/index",
+		"style": {
+			"navigationBarTitleText": "供货信息",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/work/gczh",
+		"style": {
+			"navigationBarTitleText": "找厂工",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/work/gczp",
+		"style": {
+			"navigationBarTitleText": "工厂直聘",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/member/index",
+		"style": {
+			"navigationBarTitleText": "会员中心",
+			"navigationBarBackgroundColor": "#015eea",
+			"navigationBarTextStyle": "white",
+			"backgroundColor": "#f2f2f2"
+		}
+	}, {
+		"path": "pages/member/modify-info",
+		"style": {
+			"navigationBarTitleText": "修改资料"
+		}
+	}, {
+		"path": "pages/member/publish-chengbao",
+		"style": {
+			"navigationBarTitleText": "发布工程承包"
+		}
+	}, {
+		"path": "pages/member/modify-chengbao",
+		"style": {
+			"navigationBarTitleText": "修改工程承包"
+		}
+	}, {
+		"path": "pages/member/publish-zhaogong",
+		"style": {
+			"navigationBarTitleText": "发布招工信息"
+		}
+	}, {
+		"path": "pages/member/modify-zhaogong",
+		"style": {
+			"navigationBarTitleText": "修改招工信息"
+		}
+	}, {
+		"path": "pages/member/publish-zhaohuo",
+		"style": {
+			"navigationBarTitleText": "发布工人找活"
+		}
+	}, {
+		"path": "pages/member/modify-zhaohuo",
+		"style": {
+			"navigationBarTitleText": "修改工人找活"
+		}
+	}, {
+		"path": "pages/member/publish-ershou",
+		"style": {
+			"navigationBarTitleText": "发布二手交易"
+		}
+	}, {
+		"path": "pages/member/modify-ershou",
+		"style": {
+			"navigationBarTitleText": "修改二手交易"
+		}
+	}, {
+		"path": "pages/member/publish-gczh",
+		"style": {
+			"navigationBarTitleText": "发布厂工信息"
+		}
+	}, {
+		"path": "pages/member/modify-gczh",
+		"style": {
+			"navigationBarTitleText": "修改厂工信息"
+		}
+	}, {
+		"path": "pages/member/publish-gczp",
+		"style": {
+			"navigationBarTitleText": "发布工厂直聘"
+		}
+	}, {
+		"path": "pages/member/modify-gczp",
+		"style": {
+			"navigationBarTitleText": "修改工厂直聘"
+		}
+	}, {
+		"path": "pages/member/publish-cailiao",
+		"style": {
+			"navigationBarTitleText": "发布材料"
+		}
+	}, {
+		"path": "pages/member/publish-chengbao-list",
+		"style": {
+			"navigationBarTitleText": "已发布工程承包",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/member/publish-zhaogong-list",
+		"style": {
+			"navigationBarTitleText": "已发布招工信息",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/member/publish-zhaohuo-list",
+		"style": {
+			"navigationBarTitleText": "已发布工人找活",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/member/publish-gczh-list",
+		"style": {
+			"navigationBarTitleText": "已发布厂工信息",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/member/publish-gczp-list",
+		"style": {
+			"navigationBarTitleText": "已发布工厂直聘",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/member/publish-ershou-list",
+		"style": {
+			"navigationBarTitleText": "已发布二手交易",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/member/publish-cailiao-list",
+		"style": {
+			"navigationBarTitleText": "已发布二手交易",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/member/bean-recharge",
+		"style": {
+			"navigationBarTitleText": "豆币充值"
+		}
+	}, {
+		"path": "pages/member/bean-record",
+		"style": {
+			"navigationBarTitleText": "豆币记录",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/member/certification",
+		"style": {
+			"navigationBarTitleText": "实名认证"
+		}
+	}, {
+		"path": "pages/common/login",
+		"style": {
+			"navigationBarTitleText": "登录"
+		}
+	}, {
+		"path": "pages/common/reg",
+		"style": {
+			"navigationBarTitleText": "注册"
+		}
+	}, {
+		"path": "pages/common/find_pwd",
+		"style": {
+			"navigationBarTitleText": "找回密码"
+		}
+	}, {
+		"path": "pages/work/details",
+		"style": {
+			"navigationBarTitleText": "信息详情"
+		}
+	}, {
+		"path": "pages/ershou/details",
+		"style": {
+			"navigationBarTitleText": "信息详情"
+		}
+	}, {
+		"path": "pages/article/details",
+		"style": {
+			"navigationBarTitleText": "文章详情"
+		}
+	}, {
+		"path": "pages/shop/lists",
+		"style": {
+			"navigationBarTitleText": "商品列表"
+		}
+	}, {
+		"path": "pages/shop/classify",
+		"style": {
+			"navigationBarTitleText": "分类"
+		}
+	}, {
+		"path": "pages/shop/special",
+		"style": {
+			"navigationBarTitleText": "工种专场"
+		}
+	}, {
+		"path": "pages/shop/details",
+		"style": {
+			"navigationBarTitleText": "商品详情"
+		}
+	}],
+	"globalStyle": {
+		"navigationBarBackgroundColor": "#015eea",
+		"navigationBarTextStyle": "white",
+		"backgroundColor": "#f2f2f2"
+			// #ifdef H5
+			,
+		"titleNView": false
+		// #endif
+
+	},
+	// 底部导航栏
+	// "tabBar":{
+	// 	"color": "#FFFFFF",
+	// 	"selectedColor": "#00FF3C",
+	// 	"borderStyle": "white",
+	// 	"backgroundColor": "#fff",
+	// "list":[{
+	// 	"pagePath":"pages/index/index",
+	// 	"text":"首页",
+	// 	"iconPath":"static/b_icon01.png",
+	// 	"selectedIconPath":"static/b_icon01_s.png"
+	// },{
+	// 	"pagePath":"pages/work/chengbao",
+	// 	"text":"综合承包",
+	// 	"iconPath":"static/b_icon07.png",
+	// 	"selectedIconPath":"static/b_icon07_s.png"
+	// },{
+	// 	"pagePath":"pages/work/zhaogong",
+	// 	"text":"招工信息",
+	// 	"iconPath":"static/b_icon05.png",
+	// 	"selectedIconPath":"static/b_icon05_s.png"
+	// },{
+	// 	"pagePath":"pages/work/zhaohuo",
+	// 	"text":"工人找活",
+	// 	"iconPath":"static/b_icon06.png",
+	// 	"selectedIconPath":"static/b_icon06_s.png"
+	// },{
+	// 	"pagePath":"pages/member/index",
+	// 	"text":"会员中心",
+	// 	"iconPath":"static/b_icon04.png",
+	// 	"selectedIconPath":"static/b_icon04_s.png"
+	// }]
+	// "list":[{
+	// 	"text":"找活",
+	// 	"pagePath":"pages/index/index",
+	// 	"iconPath":"static/dai_2/fine.png",
+	// 	"selectedIconPath":"static/dai_2/fine_alive.png"
+	// },{
+	// 	"text":"个人中心",
+	// 	"pagePath":"pages/member/index",
+	// 	"iconPath":"static/dai_2/me.png",
+	// 	"selectedIconPath":"static/dai_2/me_fill.png"
+	// }]
+	// },
+	"condition": { //模式配置，仅开发期间生效
+		"current": 1, //当前激活的模式（list 的索引项）
+		"list": [{
+				"name": "会员中心", //模式名称
+				"path": "pages/member/index", //启动页面，必选
+				"query": "" //启动参数，在页面的onLoad函数里面得到。
+			}, {
+				"name": "自定义启动页",
+				"path": "pages/index/index",
+				"query": ""
+			}
+
+		]
+	}
+}

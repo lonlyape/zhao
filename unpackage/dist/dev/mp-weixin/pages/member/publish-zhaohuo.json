@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "发布工人找活",
+  "usingComponents": {
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "zhao-huo": "/components/member/annotation/zhaohuo",
+    "popup-cate": "/components/member/popup-cate",
+    "popup-region": "/components/member/popup-region",
+    "choose-team": "/components/member/choose-team",
+    "upload-image": "/components/member/upload-image",
+    "publish-tcp": "/components/member/publish-tcp"
+  }
+}

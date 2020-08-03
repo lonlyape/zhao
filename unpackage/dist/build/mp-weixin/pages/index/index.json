@@ -1,0 +1,17 @@
+{
+  "navigationBarTitleText": "招老板",
+  "enablePullDownRefresh": true,
+  "navigationBarBackgroundColor": "#015eea",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#f2f2f2",
+  "usingComponents": {
+    "uni-search-bar": "/components/uni-search-bar/uni-search-bar",
+    "uni-load-more": "/components/uni-load-more/uni-load-more",
+    "worker": "/components/index/worker",
+    "contract": "/components/index/contract",
+    "materials": "/components/index/materials",
+    "construction": "/components/index/construction",
+    "filtrate-top": "/components/filtrate-top-new",
+    "tab-bar": "/components/tabbar"
+  }
+}

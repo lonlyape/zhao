@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "修改工厂直聘",
+  "usingComponents": {
+    "gczp": "/components/member/annotation/gczp",
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "choose-region": "/components/member/choose-region"
+  }
+}

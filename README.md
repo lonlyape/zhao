@@ -1,2 +1,3 @@
-# zhao
-小程序
+# attractBoss-uni-app
+
+appid:"wx5027819271f82862"

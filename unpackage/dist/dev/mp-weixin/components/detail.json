@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "cell": "/components/common/cell",
+    "popup-login": "/components/popup-login"
+  }
+}

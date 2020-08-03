@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "修改厂工信息",
+  "usingComponents": {
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "gczh": "/components/member/annotation/gczh",
+    "popup-region": "/components/member/popup-region",
+    "upload-image": "/components/member/upload-image"
+  }
+}

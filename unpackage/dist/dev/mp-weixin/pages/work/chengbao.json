@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "综合承包",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "search": "/components/search",
+    "filtrate-top": "/components/filtrate-top",
+    "notice-roll": "/components/notice-roll"
+  }
+}

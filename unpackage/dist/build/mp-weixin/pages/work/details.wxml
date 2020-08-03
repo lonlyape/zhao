@@ -1,0 +1,1 @@
+<block wx:if="{{datas}}"><view class="detail_box_f data-v-b0653092"><detail vue-id="84873f2e-1" datas="{{datas}}" cellList="{{cellList}}" title="{{title}}" user="{{user}}" detailList="{{detailList}}" data-event-opts="{{[['^updateData',[['loadData']]]]}}" bind:updateData="__e" class="data-v-b0653092" bind:__l="__l"></detail></view></block>

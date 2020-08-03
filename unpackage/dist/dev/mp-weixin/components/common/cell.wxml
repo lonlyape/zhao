@@ -1,0 +1,1 @@
+<view class="cell_com_com data-v-0327bbca"><view class="left data-v-0327bbca" style="{{(labelStyle)}}">{{label}}</view><view class="right data-v-0327bbca" style="{{(valueStyle)}}">{{value}}</view><block wx:if="{{arrow}}"><view class="icon-you yticon _i data-v-0327bbca" style="{{(arrowStyle)}}"></view></block><view class="border_view data-v-0327bbca"></view></view>

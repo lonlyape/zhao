@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "已发布工程承包",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "list-top": "/components/member/list-top"
+  }
+}

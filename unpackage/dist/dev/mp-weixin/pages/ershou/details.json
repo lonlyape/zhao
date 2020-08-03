@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "信息详情",
+  "usingComponents": {
+    "anti-fraud": "/components/anti-fraud",
+    "popup-login": "/components/popup-login"
+  }
+}

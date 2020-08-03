@@ -1,0 +1,1 @@
+<view><view class="search"><input type="text" placeholder="请输入关键词搜索" data-event-opts="{{[['input',[['getInputValue',['$event']]]],['confirm',[['toggleSearch',['$event']]]]]}}" value="{{inputValue}}" bindinput="__e" bindconfirm="__e"/><text data-event-opts="{{[['tap',[['toggleSearch',['$event']]]]]}}" bindtap="__e">搜索</text></view></view>

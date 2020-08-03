@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "修改工程承包",
+  "usingComponents": {
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "cheng-bao": "/components/member/annotation/chengbao",
+    "popup-cate": "/components/member/popup-cate",
+    "choose-region": "/components/member/choose-region",
+    "choose-team": "/components/member/choose-team",
+    "upload-image": "/components/member/upload-image"
+  }
+}

@@ -1,0 +1,2 @@
+setCssToHead(["@charset \x22UTF-8\x22;\n.",[1],"certification { padding: ",[0,40],"; background: #ffffff; }\n.",[1],"certification wx-view { line-height: 2; }\n.",[1],"certification wx-view wx-text { display: inline-block; width: ",[0,160],"; display: inline-block; text-align: justify; -moz-text-align-last: justify; text-align-last: justify; }\n",],undefined,{path:"./pages/member/certification.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/member/certification.wxml') } }));

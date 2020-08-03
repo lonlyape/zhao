@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "修改二手交易",
+  "usingComponents": {
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "er-shou": "/components/member/annotation/ershou",
+    "popup-cate": "/components/member/popup-cate",
+    "choose-region": "/components/member/choose-region",
+    "upload-image": "/components/member/upload-image"
+  }
+}

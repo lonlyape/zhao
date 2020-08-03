@@ -1,0 +1,1 @@
+.box .main{background-color:#fff}.box .main .title{font-size:28rpx;font-weight:700;color:#333;padding:16rpx;border-bottom:1px dashed #dcdcdc}.box .main .content{padding:12rpx;color:#333;line-height:1.5;font-size:26rpx}.box .main .prve-next{padding:16rpx;line-height:2;color:#333;margin-bottom:20rpx}

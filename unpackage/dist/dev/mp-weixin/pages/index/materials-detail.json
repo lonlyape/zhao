@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "材料采购详情",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "jyf-parser": "/components/jyf-parser/jyf-parser",
+    "cell": "/components/common/cell",
+    "materials": "/components/index/materials"
+  }
+}

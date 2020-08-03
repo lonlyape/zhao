@@ -1,0 +1,9 @@
+<template>
+	<view style="color: #ff0000;text-align:justify;padding:10upx;">注：如果您发布的工程承包信息已被承包，请及时修改状态为已被承包！！！</view>
+</template>
+
+<script>
+</script>
+
+<style>
+</style>

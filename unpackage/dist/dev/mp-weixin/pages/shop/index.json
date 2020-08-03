@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "供货信息",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "search": "/components/search",
+    "notice-roll": "/components/notice-roll",
+    "tab-bar": "/components/shop/tabBar"
+  }
+}

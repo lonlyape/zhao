@@ -1,0 +1,1 @@
+@charset "UTF-8";.gd{padding:20rpx}.gd .swiper{height:80rpx}.gd .swiper swiper-item{height:100%}.gd .swiper swiper-item view{width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:5rpx;color:#c60606}.gd .swiper swiper-item view text::before{content:"·";margin-right:10rpx}
