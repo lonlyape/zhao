@@ -19,9 +19,9 @@
 							</block>
 							<text class="btn" @click="setting(item)">{{settingName}}</text>
 						</block>
-						<!-- <block v-else-if="item.status != 3"> -->
-						<block v-else-if="false">
-							<text class="btn" @click="jump('modify-zhaohuo?work_id='+item.id)">修改</text>
+						<block v-else-if="item.status != 3">
+						<!-- <block v-else-if="false"> -->
+							<text class="btn" @click="jump('modify-cailiao?work_id='+item.id)">修改</text>
 						</block>
 						<text class="btn danger" @click="deletes(item,index)">删除</text>
 					</view>
