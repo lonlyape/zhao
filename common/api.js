@@ -135,6 +135,8 @@ const modifyErShou			=	'/member/modify-ershou';
 const modifyGczh			=	'/member/modify-gczh';
 // 修改工厂直聘
 const modifyGczp			=	'/member/modify-gczp';
+// 修改材料
+const modifyMaterial			=	'/member/modify-material';
 // 修改招工/找活/承包图片
 const modifyWorkImage 		=	'/member/modify-work-image';
 // 修改营业执照
@@ -223,6 +225,7 @@ export default{
 	modifyErShou,
 	modifyGczh,
 	modifyGczp,
+	modifyMaterial,
 	modifyWorkImage,
 	modifyWorkImage2,
 	modifyUsedImage,

@@ -103,10 +103,10 @@
 						pathToBase64(chooseRes.tempFilePaths[0]).then(base64 => {
 							if(_this.dataId != ''){
 								let url = _this.type == 'ershou' ? _this.api.modifyUsedImage : _this.api.modifyWorkImage;
+								let type = _this.type == 'ershou' ? 'used' : 'work';
 								if(_this.type=='yingye'){
 									url=_this.api.modifyWorkImage2
 								}
-								let type = _this.type == 'ershou' ? 'used' : 'work';
 								let data = {base64ImgStr:base64,data_id:_this.dataId,type:type,user_id:_this.userInfo.uid};
 								if(this.more_file_name){
 									data.more_file_name = this.more_file_name;
@@ -136,7 +136,11 @@
 									}
 								})
 							}else{
-								_this.request.post(_this.api.base64ToImg,{
+								let url=_this.api.base64ToImg
+								if(_this.type=='yingye'){
+									url=_this.api.modifyWorkImage2
+								}
+								_this.request.post(url,{
 									data:{base64ImgStr:base64}
 								}).then(res=>{
 									uni.hideLoading();

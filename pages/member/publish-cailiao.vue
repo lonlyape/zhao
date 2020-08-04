@@ -35,23 +35,23 @@
 			</view>
 			<view class="form-group">
 				<view class="title">价格(元)</view>
-				<input placeholder="输入价格" name="price"></input>
+				<input placeholder="输入价格" name="more-price"></input>
 			</view>
 			<view class="form-group">
 				<view class="title">店名</view>
-				<input placeholder="输入店名" name="company_name"></input>
+				<input placeholder="输入店名" name="more-company_name"></input>
 			</view>
 			<view class="form-group">
 				<view class="title">产品名称</view>
-				<input placeholder="输入产品名称" name="more[product_name]"></input>
+				<input placeholder="输入产品名称" name="more-product_name"></input>
 			</view>
 			<view class="form-group">
 				<view class="title">牌号/规格</view>
-				<input placeholder="输入牌号/规格" name="more[guige]"></input>
+				<input placeholder="输入牌号/规格" name="more-guige"></input>
 			</view>
 			<view class="form-group">
 				<view class="title">品牌</view>
-				<input placeholder="输入品牌" name="more[brand]"></input>
+				<input placeholder="输入品牌" name="more-brand"></input>
 			</view>
 			<view class="form-group">
 				<view class="title">产地</view>
@@ -63,11 +63,11 @@
 			</view>
 			<view class="form-group">
 				<view class="title">自定义参数1</view>
-				<input placeholder="输入自定义参数1" name="more[param1]"></input>
+				<input placeholder="输入自定义参数1" name="more-param1"></input>
 			</view>
 			<view class="form-group">
 				<view class="title">自定义参数2</view>
-				<input placeholder="输入自定义参数2" name="more[param2]"></input>
+				<input placeholder="输入自定义参数2" name="more-param2"></input>
 			</view>
 			<view class="form-group block_margin">
 				<view class="title">联系人</view>
@@ -90,7 +90,8 @@
 			</view>
 			<view class="xq-title block_margin">详细信息</view>
 			<view class="form-group" style="border:none;">
-				<textarea v-if="isTextAreaShow" @input="bindTextArea" :value="textAreaContent" name="content1" maxlength="750" placeholder="请输入详情信息"/>
+				<textarea v-if="isTextAreaShow" @input="bindTextArea" :value="textAreaContent" name="content1" maxlength="750"
+				 placeholder="请输入详情信息" />
 				<view class="view-textarea" v-else>{{textAreaContent}}</view>
 			</view>
 			<view class="xq-title block_margin">订购说明</view>
@@ -141,7 +142,7 @@
 				tcpStatus: 1,
 				isTextAreaShow: true,
 				textAreaContent: '',
-				textAreaContent2: ''
+				textAreaContent2: '',
 			}
 		},
 		computed: {
@@ -236,13 +237,13 @@
 						errorMsg: "请选择包装规格"
 					},
 					{
-						name: "price",
+						name: "more-price",
 						checkType: "notnull",
 						checkRule: "",
 						errorMsg: "输入价格"
 					},
 					{
-						name: "company_name",
+						name: "more-company_name",
 						checkType: "notnull",
 						checkRule: "",
 						errorMsg: "输入店名"
@@ -294,6 +295,16 @@
 				}
 				let formData = e.detail.value;
 				let result = validate.check(formData, rule);
+				
+				var more={}
+				for(let i in formData){
+					if(/\more-/.test(i)){
+						more[i.replace('more-','')]=formData[i]
+						delete formData[i]
+					}
+				}
+				formData.more=more
+				
 				if (!result) {
 					this.func.msg(validate.error);
 					return;

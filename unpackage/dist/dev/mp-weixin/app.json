@@ -19,6 +19,7 @@
     "pages/member/modify-zhaohuo",
     "pages/member/publish-ershou",
     "pages/member/modify-ershou",
+    "pages/member/modify-cailiao",
     "pages/member/publish-gczh",
     "pages/member/modify-gczh",
     "pages/member/publish-gczp",
@@ -52,6 +53,5 @@
     "backgroundColor": "#f2f2f2"
   },
   "permission": {},
-  "usingComponents": {},
-  "sitemapLocation": "sitemap45.json"
+  "usingComponents": {}
 }

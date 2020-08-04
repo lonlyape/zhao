@@ -110,6 +110,11 @@
 			"navigationBarTitleText": "修改二手交易"
 		}
 	}, {
+		"path": "pages/member/modify-cailiao",
+		"style": {
+			"navigationBarTitleText": "修改材料信息"
+		}
+	}, {
 		"path": "pages/member/publish-gczh",
 		"style": {
 			"navigationBarTitleText": "发布厂工信息"

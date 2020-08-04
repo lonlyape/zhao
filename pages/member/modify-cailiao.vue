@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view v-if="detailData">
 		<zhao-huo></zhao-huo>
 		<form @submit="formSubmit" @reset="formReset">
 			<view class="form-group">
@@ -35,39 +35,40 @@
 			</view>
 			<view class="form-group">
 				<view class="title">价格(元)</view>
-				<input placeholder="输入价格" name="price"></input>
+				<input placeholder="输入价格" name="more-price" :value="more.price"></input>
 			</view>
 			<view class="form-group">
 				<view class="title">店名</view>
-				<input placeholder="输入店名" name="company_name"></input>
+				<input placeholder="输入店名" name="more-company_name" :value="more.company_name"></input>
 			</view>
 			<view class="form-group">
 				<view class="title">产品名称</view>
-				<input placeholder="输入产品名称" name="more[product_name]"></input>
+				<input placeholder="输入产品名称" name="more-product_name" :value="more.product_name"></input>
 			</view>
 			<view class="form-group">
 				<view class="title">牌号/规格</view>
-				<input placeholder="输入牌号/规格" name="more[guige]"></input>
+				<input placeholder="输入牌号/规格" name="more-guige" :value="more.guige"></input>
 			</view>
 			<view class="form-group">
 				<view class="title">品牌</view>
-				<input placeholder="输入品牌" name="more[brand]"></input>
+				<input placeholder="输入品牌" name="more-brand" :value="more.brand"></input>
 			</view>
 			<view class="form-group">
 				<view class="title">产地</view>
 				<input placeholder="请选择产地" :value="regionName" disabled="true" @click="togglePopup('open','region_id')"></input>
 				<input type="text" :value="regionId" name="region_id" class="hidden" />
 				<uni-popup ref="region_id" :custom="true">
-					<popup-region headerTitle="请选择产地" overstepLengthTips="产地" chooseLength="3" @close="togglePopup" @click="confirmRegionChoose"></popup-region>
+					<popup-region headerTitle="请选择产地" overstepLengthTips="产地" :defaultSelectedVal="regionId" chooseLength="3" @close="togglePopup"
+					 @click="confirmRegionChoose"></popup-region>
 				</uni-popup>
 			</view>
 			<view class="form-group">
 				<view class="title">自定义参数1</view>
-				<input placeholder="输入自定义参数1" name="more[param1]"></input>
+				<input placeholder="输入自定义参数1" name="more-param1" :value="more.param1"></input>
 			</view>
 			<view class="form-group">
 				<view class="title">自定义参数2</view>
-				<input placeholder="输入自定义参数2" name="more[param2]"></input>
+				<input placeholder="输入自定义参数2" name="more-param2" :value="more.param2"></input>
 			</view>
 			<view class="form-group block_margin">
 				<view class="title">联系人</view>
@@ -83,14 +84,15 @@
 				<view class="view-textarea" v-else>{{textAreaContent}}</view>
 			</view> -->
 			<view class="block_margin">
-				<upload-image length="6" title="产品图片" @getImageUrl="getImageUrl"></upload-image>
+				<upload-image length="6" :dataId="detailData.id" :image="imageList" title="产品图片" @getImageUrl="getImageUrl"></upload-image>
 			</view>
 			<view class="block_margin">
-				<upload-image length="6" type="yingye" title="营业执照" @getImageUrl="getImageUrl2"></upload-image>
+				<upload-image length="6" :dataId="detailData.id" :image="imageList2" type="yingye" title="营业执照" @getImageUrl="getImageUrl2"></upload-image>
 			</view>
 			<view class="xq-title block_margin">详细信息</view>
 			<view class="form-group" style="border:none;">
-				<textarea v-if="isTextAreaShow" @input="bindTextArea" :value="textAreaContent" name="content1" maxlength="750" placeholder="请输入详情信息"/>
+				<textarea v-if="isTextAreaShow" @input="bindTextArea" :value="textAreaContent" name="content1" maxlength="750"
+				 placeholder="请输入详情信息" />
 				<view class="view-textarea" v-else>{{textAreaContent}}</view>
 			</view>
 			<view class="xq-title block_margin">订购说明</view>
@@ -143,7 +145,8 @@
 				isTextAreaShow: true,
 				textAreaContent: '',
 				textAreaContent2: '',
-				detailData:null
+				detailData:null,
+				more:{},
 			}
 		},
 		computed: {
@@ -172,6 +175,7 @@
 				}).then(res => {
 					if(res.code){
 						this.detailData = res.data;
+						this.more=this.detailData.more
 						dispose(res.data);
 					}else{
 						uni.showModal({
@@ -198,7 +202,40 @@
 						region.push(data.region.city_id);
 					}
 					
+					let mtName=''
+					let mtId=''
+					if(data.mt instanceof Array){
+						data.mt.forEach(one=>{
+							mtName=mtName?','+one.name:one.name
+							mtId=mtId?','+one.id:one.ids
+						})
+					}else{
+						mtName=data.mt.name
+						mtId=data.mt.id
+					}
+					
+					let pgName=''
+					let pgId=''
+					if(data.pg instanceof Array){
+						data.pg.forEach(one=>{
+							pgName=mtName?','+one.name:one.name
+							pgId=mtId?','+one.id:one.ids
+						})
+					}else{
+						pgName=data.pg.name
+						pgId=data.pg.id
+					}
+					
+					_this.mtId =mtId
+					_this.mtName =mtName
+					_this.pgName =pgName
+					_this.pgId =pgId
+					
+					_this.imageList = data.image
+					_this.imageList2 = data.image1||[]
 					_this.title = data.title
+					_this.textAreaContent = data.content1
+					_this.textAreaContent2 = data.content2
 					_this.cateId = data.cate.id;
 					_this.cateName = data.cate.name;
 					_this.region_id = region.join(',')
@@ -285,13 +322,13 @@
 						errorMsg: "请选择包装规格"
 					},
 					{
-						name: "price",
+						name: "more-price",
 						checkType: "notnull",
 						checkRule: "",
 						errorMsg: "输入价格"
 					},
 					{
-						name: "company_name",
+						name: "more-company_name",
 						checkType: "notnull",
 						checkRule: "",
 						errorMsg: "输入店名"
@@ -347,11 +384,22 @@
 					this.func.msg(validate.error);
 					return;
 				}
+				
+				var more={}
+				for(let i in formData){
+					if(/\more-/.test(i)){
+						more[i.replace('more-','')]=formData[i]
+						delete formData[i]
+					}
+				}
+				formData.more=more
+				
+				
 				uni.showLoading({
 					title: '发布中',
 					mask: true
 				});
-				this.request.post(this.api.publishMaterial, {
+				this.request.post(this.api.modifyMaterial, {
 					data: formData,
 				}).then(res => {
 					uni.hideLoading();
