@@ -230,6 +230,7 @@
 					_this.mtName =mtName
 					_this.pgName =pgName
 					_this.pgId =pgId
+					_this.regionId =region.join(',')
 					
 					_this.imageList = data.image
 					_this.imageList2 = data.image1||[]
@@ -237,8 +238,7 @@
 					_this.textAreaContent = data.content1
 					_this.textAreaContent2 = data.content2
 					_this.cateId = data.cate.id;
-					_this.cateName = data.cate.name;
-					_this.region_id = region.join(',')
+					_this.cateName = data.cate.name
 					
 					
 					// _this.team = data.team;
@@ -393,6 +393,7 @@
 					}
 				}
 				formData.more=more
+				formData.id=this.detailData.id
 				
 				
 				uni.showLoading({
