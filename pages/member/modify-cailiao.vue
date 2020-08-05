@@ -100,7 +100,6 @@
 				<textarea v-if="isTextAreaShow" @input="bindTextArea2" :value="textAreaContent2" name="content2" maxlength="750" placeholder="请输入订购说明"/>
 				<view class="view-textarea" v-else>{{textAreaContent}}</view>
 			</view>
-			<publish-tcp @result="getPublishTcpValue" tcpType="zhaohuo" v-if="tcpStatus"></publish-tcp>
 			<view class="form-group form-button_box">
 				<input type="text" name="type" class="hidden" value="10" />
 				<input type="text" name="is_tcp" class="hidden" :value="isTcp" v-if="tcpStatus" />
@@ -141,7 +140,7 @@
 				imageList: [],
 				imageList2: [],
 				isTcp: '',
-				tcpStatus: 1,
+				tcpStatus: 0,
 				isTextAreaShow: true,
 				textAreaContent: '',
 				textAreaContent2: '',
@@ -385,7 +384,11 @@
 					return;
 				}
 				
-				var more={}
+				var more={
+					image1:formData.img1Url
+				}
+				
+				delete formData.img1Url
 				for(let i in formData){
 					if(/\more-/.test(i)){
 						more[i.replace('more-','')]=formData[i]
@@ -394,7 +397,6 @@
 				}
 				formData.more=more
 				formData.id=this.detailData.id
-				
 				
 				uni.showLoading({
 					title: '发布中',

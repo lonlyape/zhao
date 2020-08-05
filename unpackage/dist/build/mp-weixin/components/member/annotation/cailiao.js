@@ -1,9 +1,9 @@
-(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["components/member/annotation/cailiao"],{"5a68":function(n,t){},7323:function(n,t,a){"use strict";var u,c=function(){var n=this,t=n.$createElement;n._self._c},e=[];a.d(t,"b",(function(){return c})),a.d(t,"c",(function(){return e})),a.d(t,"a",(function(){return u}))},a5ec:function(n,t,a){"use strict";a.r(t);var u=a("5a68"),c=a.n(u);for(var e in u)"default"!==e&&function(n){a.d(t,n,(function(){return u[n]}))}(e);t["default"]=c.a},c9af:function(n,t,a){"use strict";a.r(t);var u=a("7323"),c=a("a5ec");for(var e in c)"default"!==e&&function(n){a.d(t,n,(function(){return c[n]}))}(e);var r,o=a("f0c5"),f=Object(o["a"])(c["default"],u["b"],u["c"],!1,null,null,null,!1,u["a"],r);t["default"]=f.exports}}]);
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["components/member/annotation/cailiao"],{"0be8":function(n,t){},"334f":function(n,t,e){"use strict";e.r(t);var u=e("0be8"),r=e.n(u);for(var a in u)"default"!==a&&function(n){e.d(t,n,(function(){return u[n]}))}(a);t["default"]=r.a},"41ee":function(n,t,e){"use strict";var u,r=function(){var n=this,t=n.$createElement;n._self._c},a=[];e.d(t,"b",(function(){return r})),e.d(t,"c",(function(){return a})),e.d(t,"a",(function(){return u}))},bd94:function(n,t,e){"use strict";e.r(t);var u=e("41ee"),r=e("334f");for(var a in r)"default"!==a&&function(n){e.d(t,n,(function(){return r[n]}))}(a);var c,o=e("f0c5"),f=Object(o["a"])(r["default"],u["b"],u["c"],!1,null,null,null,!1,u["a"],c);t["default"]=f.exports}}]);
 ;(global["webpackJsonp"] = global["webpackJsonp"] || []).push([
     'components/member/annotation/cailiao-create-component',
     {
         'components/member/annotation/cailiao-create-component':(function(module, exports, __webpack_require__){
-            __webpack_require__('543d')['createComponent'](__webpack_require__("c9af"))
+            __webpack_require__('543d')['createComponent'](__webpack_require__("bd94"))
         })
     },
     [['components/member/annotation/cailiao-create-component']]

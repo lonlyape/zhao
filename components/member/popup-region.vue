@@ -86,6 +86,30 @@
 			},200);
 		},
 		methods: {
+			initName(){
+				if(this.defaultSelectedVal&&!this.defaultSelectedName){
+					let allRegion = this.allRegion
+					let value=this.defaultSelectedVal.split(',')
+					let str=''
+					allRegion.forEach(one=>{
+						if(value.includes(String(one.id))){
+							str+=str?','+one.name:one.name
+						}
+						one.child.forEach(item=>{
+							if(value.includes(String(item.id))){
+								str+=str?','+item.name:item.name
+							}
+							item.child&&item.child.forEach(obj=>{
+								if(value.includes(String(obj.id))){
+									str+=str?','+obj.name:obj.name
+								}
+							})
+						})
+					})
+					this.confirmName = str
+					this.$emit('click',{regionId:this.confirmId,regionName:this.confirmName});
+				}
+			},
 			requestRegion(){
 				let storageName = 'allRegion';
 				let _this = this;
@@ -94,6 +118,7 @@
 					success:(res=>{
 						let region = res.data.all;
 						_this.allRegion = region;
+						this.initName()
 					}),
 					fail:(err=>{
 						this.request.post(this.api.getAllRegion,{
@@ -105,6 +130,7 @@
 									data:res.data
 								});
 								_this.allRegion = res.data.all;
+								this.initName()
 							}
 						}).catch(error =>{
 							console.log('Error:',error);

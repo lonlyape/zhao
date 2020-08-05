@@ -12,7 +12,7 @@
 		<view class="image-group">
 			<view class="solids" v-for="(item,index) in imageList" :key="index" @click="ViewImage" :data-url="item">
 				<text class="delete" @click.stop="DelImg(index)">X</text>
-				<image :src="item" mode=""></image>
+				<image :src="initUrl(item)" mode=""></image>
 			</view>
 			<view class="solids choose" @click="ChooseImage" v-if="imageList.length < length">
 				+
@@ -89,6 +89,12 @@
 			
 		},
 		methods:{
+			initUrl(url){
+				if (!/^http/.test(url)) {
+					return this.api_url + url
+				}
+				return url
+			},
 			ChooseImage() {
 				let _this = this;
 				uni.chooseImage({
