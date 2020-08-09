@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view v-if="data">
 		<zhao-huo></zhao-huo>
 		<form @submit="formSubmit" @reset="formReset">
 			<view class="form-group">
@@ -60,7 +60,7 @@
 	export default{
 		data(){
 			return{
-				data:[],
+				data:null,
 				team:'',
 				cateId:'',
 				cateName:'',

@@ -42,5 +42,5 @@ export default {
 		newContent = newContent.replace(/<br[^>]*\/>/gi, '');
 		newContent = newContent.replace(/\<img/gi, '<img style="max-width:100%;height:auto;display:block;margin-top:0;margin-bottom:0;"');
 		return newContent;
-	}
+	},
 }

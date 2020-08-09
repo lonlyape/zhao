@@ -205,10 +205,16 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
                 uni.showLoading({
                   title: '数据加载中' });
 
-                data = { user_id: _this2.userInfo.uid, type: 10, page: _this2.refreshing ? 1 : _this2.page };if (!(
+                data = {
+                  user_id: _this2.userInfo.uid,
+                  type: 10,
+                  page: _this2.refreshing ? 1 : _this2.page };if (!(
+
                 _this2.refreshing || _this2.page == 1)) {_context.next = 5;break;}_context.next = 5;return (
                   _this2.request.post(_this2.api.getTopConfig, {
-                    data: { isApi: true } }).
+                    data: {
+                      isApi: true } }).
+
                   then(function (res) {
                     _this2.top_config = res.data;
                   }));case 5:_context.next = 7;return (
@@ -243,7 +249,11 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
     },
     setting: function setting(item) {var _this3 = this;
       var _this = this;
-      var data = { work_id: item.id, user_id: this.userInfo.uid, status: 3 };
+      var data = {
+        work_id: item.id,
+        user_id: this.userInfo.uid,
+        status: 3 };
+
       uni.showModal({
         title: '提示',
         content: '确定要' + this.settingName + '吗？',
@@ -263,6 +273,7 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
             });
           }
         } });
+
 
       function dispose() {
         _this.lists.forEach(function (ea) {
@@ -295,6 +306,7 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
       } else {
         t('需要 ' + bean + ' 豆币方可置顶，确定置顶吗?', 'yes');
       }
+
       function t(title, first) {
         uni.showModal({
           title: '提示',
@@ -302,7 +314,13 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
           success: function success(e) {
             if (e.confirm) {
               _this.request.post(_this.api.isTopWork, {
-                data: { data_id: id, type: type, tab: 'work', first: first, user_id: _this.userInfo.uid } }).
+                data: {
+                  data_id: id,
+                  type: type,
+                  tab: 'work',
+                  first: first,
+                  user_id: _this.userInfo.uid } }).
+
               then(function (res) {
                 if (res.code) {
                   _this.refreshing = true;
@@ -332,7 +350,10 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
         success: function success(e) {
           if (e.confirm) {
             _this4.request.post(_this4.api.deleteWorkInfo, {
-              data: { work_id: id, user_id: _this4.userInfo.uid } }).
+              data: {
+                work_id: id,
+                user_id: _this4.userInfo.uid } }).
+
             then(function (res) {
               if (res.code) {
                 _this4.lists.splice(index, 1);

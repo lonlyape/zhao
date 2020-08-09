@@ -1,5 +1,5 @@
 <template>
-	<common-box v-if="option">	
+	<common-box v-if="option">
 		<view class="construction_com" v-on:click="jump">
 			<view class="row row_1">
 				<view class="row_left">
@@ -35,7 +35,7 @@
 				</view>
 				<view class="center">
 					<view class="p_1">
-						{{user.name}}
+						{{option.contact}}
 						<text class="real_name" v-if="user.is_certification">已实名</text>
 						<text class="status_t">{{option.status_text}}</text>
 					</view>
@@ -52,45 +52,55 @@
 <script>
 	import uniIcon from "@/components/uni-icon/uni-icon.vue"
 	import commonBox from './common/item-box.vue'
-	export default{
-		components:{commonBox,uniIcon},
-		props:{
-			option:{
-				type:Object,
+	export default {
+		components: {
+			commonBox,
+			uniIcon
+		},
+		props: {
+			option: {
+				type: Object,
 			}
 		},
-		computed:{
-			addr:function(){
-				let addr=''
-				let addrObj=this.option.region
-				addr+=addrObj.city||addrObj.province
+		computed: {
+			addr: function() {
+				let addr = ''
+				let addrObj = this.option.region
+				addr += addrObj.city || addrObj.province
 				return addr
 			},
-			user:function(){
+			user: function() {
+				console.log(this.option.user)
 				return this.option.user
 			},
-			workType:function(){
-				let workTypeList=this.option.cate;
-				let str=''
-				workTypeList.forEach(one=>{
-					str+=str?','+one.name:one.name
-				})
-				return str
+			workType: function() {
+				let str = ''
+				let data = this.option
+				let hasName = data.cate ? data.cate.some(one => one.name) : null
+				if (hasName) {
+					let workTypeList = data.cate;
+					workTypeList.forEach(one => {
+						str += str ? ',' + one.name : one.name
+					})
+				} else if (data.more.gongzuoleixing_text) {
+					str = data.more.gongzuoleixing_text
+				}
+				return str || '--'
 			},
-			xinzi:function(){
-				let msg=this.option.more
-				if(msg){
-					return msg.xinzi_text+msg.xinzileixing_text
-				}else{
+			xinzi: function() {
+				let msg = this.option.more
+				if (msg) {
+					return msg.xinzi_text + msg.xinzileixing_text
+				} else {
 					return '面议/月'
 				}
 			}
 		},
-		methods:{
-			jump:function(){
-				let url='/pages/work/details?work_id='+this.option.id
+		methods: {
+			jump: function() {
+				let url = '/pages/work/details?work_id=' + this.option.id
 				uni.navigateTo({
-					url:url
+					url: url
 				})
 			}
 		}
@@ -99,21 +109,25 @@
 
 <style lang="scss">
 	@import './common/com.scss';
-	.construction_com{
+
+	.construction_com {
 		@extend .common_com;
-		.row{
-			&.row_2{
-				.row_left{
-					.tub_text{
-						margin-left:30rpx;
+
+		.row {
+			&.row_2 {
+				.row_left {
+					.tub_text {
+						margin-left: 30rpx;
 						display: inline-block;
 					}
 				}
-				.row_right{
-					width:180rpx;
-					&.money_month{
+
+				.row_right {
+					width: 180rpx;
+
+					&.money_month {
 						font-size: 32rpx;
-						color:#0669ed;
+						color: #0669ed;
 					}
 				}
 			}

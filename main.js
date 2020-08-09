@@ -5,6 +5,8 @@ import api from '@/common/api.js'
 import request from '@/common/extend/request.js'
 import store from './store'
 
+import '@/common/filter.js'
+
 // http://laoban.zomsky.com/
 const api_url = 'http://laoban.zomsky.com';
 // const api_url = 'http://www.zhaobossshop.net';

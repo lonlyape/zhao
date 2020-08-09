@@ -12,7 +12,7 @@
 		<view class="image-group">
 			<view class="solids" v-for="(item,index) in imageList" :key="index" @click="ViewImage" :data-url="item">
 				<text class="delete" @click.stop="DelImg(index)">X</text>
-				<image :src="item" mode=""></image>
+				<image :src="item|initImgUrl" mode=""></image>
 			</view>
 			<view class="solids choose" @click="ChooseImage" v-if="imageList.length < length">
 				+

@@ -34,7 +34,7 @@
 				</view>
 				<view class="center">
 					<view class="p_1">
-						{{user.name}}
+						{{option.contact}}
 						<text class="real_name" v-if="user.is_certification">已实名</text>
 						<text class="status_t">{{option.status_text}}</text>
 					</view>
@@ -66,6 +66,7 @@
 				return addr
 			},
 			user:function(){
+				console.log(this.option.user)
 				return this.option.user
 			},
 			workType:function(){

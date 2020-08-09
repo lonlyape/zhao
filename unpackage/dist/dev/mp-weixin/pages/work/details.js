@@ -168,7 +168,8 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
       var user = datas.user || {};
       return _objectSpread({},
       user, {
-        phone: datas.phone });
+        phone: datas.phone,
+        contact: datas.contact });
 
     },
     detailList: function detailList() {

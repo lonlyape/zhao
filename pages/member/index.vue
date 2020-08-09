@@ -174,13 +174,16 @@
 					this.isPopupLogin = true;
 					return;
 				}
+				var itemList=['发布工程承包','发布招工信息','发布找活信息','发布找厂工信息','发布工厂直聘','发布材料']
 				uni.showActionSheet({
-					itemList: ['发布工程承包','发布招工信息','发布找活信息','发布找厂工信息','发布工厂直聘','发布材料'],
+					itemList,
 					success: (e) => {
 						let urlArray = ['publish-chengbao','publish-zhaogong','publish-zhaohuo','publish-gczh','publish-gczp','publish-cailiao'];
-						uni.navigateTo({
-							url:urlArray[e.tapIndex]
-						})
+						if(e.tapIndex<itemList.length-1){	
+							uni.navigateTo({
+								url:urlArray[e.tapIndex]
+							})
+						}
 					},fail: (e) => {
 						console.log('fail:',e)
 					},complete: (e) => {

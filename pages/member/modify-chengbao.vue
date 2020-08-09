@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view v-if="data">
 		<cheng-bao></cheng-bao>
 		<form @submit="formSubmit" @reset="formReset">
 			<view class="form-group">
@@ -119,7 +119,7 @@
 	export default{
 		data(){
 			return{
-				data:[],
+				data:null,
 				region_id:'',
 				team:'',
 				cateName:'',

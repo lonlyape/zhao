@@ -186,6 +186,7 @@ __webpack_require__.r(__webpack_exports__);
       return addr;
     },
     user: function user() {
+      console.log(this.option.user);
       return this.option.user;
     },
     workType: function workType() {

@@ -112,7 +112,7 @@
 					"iconPath":"../static/dai_2/fine.png",
 					"selectedIconPath":"../static/dai_2/fine_alive.png"
 				},{
-					"text":'发布',
+					"text":'发布招工',
 					"iconPath":"../static/dai_2/push.png",
 					"selectedIconPath":"../static/dai_2/push_fill.png"
 				},{

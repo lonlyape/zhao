@@ -173,7 +173,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 {
-  components: { commonBox: commonBox, uniIcon: uniIcon },
+  components: {
+    commonBox: commonBox,
+    uniIcon: uniIcon },
+
   props: {
     option: {
       type: Object } },
@@ -187,15 +190,22 @@ __webpack_require__.r(__webpack_exports__);
       return addr;
     },
     user: function user() {
+      console.log(this.option.user);
       return this.option.user;
     },
     workType: function workType() {
-      var workTypeList = this.option.cate;
       var str = '';
-      workTypeList.forEach(function (one) {
-        str += str ? ',' + one.name : one.name;
-      });
-      return str;
+      var data = this.option;
+      var hasName = data.cate ? data.cate.some(function (one) {return one.name;}) : null;
+      if (hasName) {
+        var workTypeList = data.cate;
+        workTypeList.forEach(function (one) {
+          str += str ? ',' + one.name : one.name;
+        });
+      } else if (data.more.gongzuoleixing_text) {
+        str = data.more.gongzuoleixing_text;
+      }
+      return str || '--';
     },
     xinzi: function xinzi() {
       var msg = this.option.more;

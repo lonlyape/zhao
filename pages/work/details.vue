@@ -36,7 +36,8 @@
 				let user = datas.user || {}
 				return {
 					...user,
-					phone: datas.phone
+					phone: datas.phone,
+					contact:datas.contact
 				}
 			},
 			detailList: function() {

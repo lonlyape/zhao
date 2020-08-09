@@ -205,7 +205,7 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
       type: Object,
       default: function _default() {
         return {
-          name: '符东伟',
+          contact: '符东伟',
           phone: '18219304554',
           head_img: '/static/b_icon04_s.png' };
 

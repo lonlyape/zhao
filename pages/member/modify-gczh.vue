@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view v-if="data">
 		<gczh></gczh>
 		<form @submit="formSubmit" @reset="formReset">
 			<view class="form-group">
@@ -57,7 +57,7 @@
 	export default{
 		data(){
 			return{
-				data:[],
+				data:null,
 				regionId:'',
 				regionName:'',
 				isTextAreaShow:true,

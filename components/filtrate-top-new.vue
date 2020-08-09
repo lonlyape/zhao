@@ -45,7 +45,7 @@
 					<block v-if="type == 'chengbao'">
 						<view class="item" v-if="index != 1" @click="filterParam('','','',{id:index,name:item})" :class="[{avtive:teamName==item},'']">{{item}}</view>
 					</block>
-					<block v-else>
+					<block v-else-if="item">
 						<view class="item" @click="filterParam('','','',{id:index,name:item})" :class="[{avtive:teamName==item},'']">{{item}}</view>
 					</block>
 				</block>
@@ -364,7 +364,7 @@
 		position: relative;
 	}
 	.top-tab-wrap{
-		height: 100upx;
+		height: 80upx;
 		width: 100%;
 		display: flex;
 		justify-content: space-around;

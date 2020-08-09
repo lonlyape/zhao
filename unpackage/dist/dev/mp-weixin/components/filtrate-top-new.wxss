@@ -28,7 +28,7 @@
   position: relative;
 }
 .top-tab-wrap {
-  height: 100rpx;
+  height: 80rpx;
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;

@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view v-if="data">
 		<gczp></gczp>
 		<form @submit="formSubmit" @reset="formReset">
 			<view class="form-group">
@@ -109,7 +109,7 @@
 	export default{
 		data(){
 			return{
-				data:[],
+				data:null,
 				region_id:'',
 				team_value:'',
 				xinzileixing:[
@@ -195,6 +195,14 @@
 							_this.xueliyaoqiu_index = index1;
 							_this.xueliyaoqiu_status = true;
 						}
+					}
+					if(_this.gczpRestsData.welfare){
+						let list=_this.gczpRestsData.welfare.filter(one=>one.length>2)
+						let list_tow=_this.gczpRestsData.welfare.filter(one=>one.length<=2)
+						list.splice(2,0,list_tow[0])
+						list.splice(5,0,list_tow[1])
+						
+						_this.gczpRestsData.welfare=list
 					}
 					_this.gongzuonianxian_value = data.more.gongzuonianxian;
 					for(var index2 in _this.gczpRestsData.term){

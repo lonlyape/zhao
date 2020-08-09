@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view v-if="data">
 		<zhao-gong></zhao-gong>
 		<form @submit="formSubmit" @reset="formReset">
 			<view class="form-group">
@@ -55,7 +55,7 @@
 	export default{
 		data(){
 			return{
-				data:[],
+				data:null,
 				region_id:'',
 				cateName:'',
 				cateId:'',

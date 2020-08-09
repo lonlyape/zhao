@@ -204,7 +204,7 @@ var validate = __webpack_require__(/*! ../../common/extend/validate.js */ 85);va
 {
   data: function data() {
     return {
-      data: [],
+      data: null,
       region_id: '',
       cateName: '',
       cateId: '',
