@@ -235,7 +235,7 @@
 
 <style lang="scss">
 	.list-wrap{
-		margin-top: 400upx;
+		margin-top: 310upx;
 		.list-item{
 			margin-top:20upx;
 			background-color:white;

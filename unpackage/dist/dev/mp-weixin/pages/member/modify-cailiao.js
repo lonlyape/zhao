@@ -249,7 +249,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var zhaoHuo = function zhaoHuo() {__webpack_require__.e(/*! require.ensure | components/member/annotation/zhaohuo */ "components/member/annotation/zhaohuo").then((function () {return resolve(__webpack_require__(/*! @/components/member/annotation/zhaohuo */ 501));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniPopup = function uniPopup() {__webpack_require__.e(/*! require.ensure | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then((function () {return resolve(__webpack_require__(/*! @/components/uni-popup/uni-popup */ 453));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var popupCate = function popupCate() {__webpack_require__.e(/*! require.ensure | components/member/popup-cate */ "components/member/popup-cate").then((function () {return resolve(__webpack_require__(/*! @/components/member/popup-cate */ 465));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var popupRegion = function popupRegion() {__webpack_require__.e(/*! require.ensure | components/member/popup-region */ "components/member/popup-region").then((function () {return resolve(__webpack_require__(/*! @/components/member/popup-region */ 506));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var chooseTeam = function chooseTeam() {__webpack_require__.e(/*! require.ensure | components/member/choose-team */ "components/member/choose-team").then((function () {return resolve(__webpack_require__(/*! @/components/member/choose-team */ 477));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uploadImage = function uploadImage() {Promise.all(/*! require.ensure | components/member/upload-image */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/member/upload-image")]).then((function () {return resolve(__webpack_require__(/*! @/components/member/upload-image */ 482));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var publishTcp = function publishTcp() {__webpack_require__.e(/*! require.ensure | components/member/publish-tcp */ "components/member/publish-tcp").then((function () {return resolve(__webpack_require__(/*! @/components/member/publish-tcp */ 489));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
@@ -277,7 +276,7 @@ var validate = __webpack_require__(/*! ../../common/extend/validate.js */ 85);va
       imageList: [],
       imageList2: [],
       isTcp: '',
-      tcpStatus: 1,
+      tcpStatus: 0,
       isTextAreaShow: true,
       textAreaContent: '',
       textAreaContent2: '',
@@ -521,7 +520,11 @@ var validate = __webpack_require__(/*! ../../common/extend/validate.js */ 85);va
         return;
       }
 
-      var more = {};
+      var more = {
+        image1: formData.img1Url };
+
+
+      delete formData.img1Url;
       for (var i in formData) {
         if (/\more-/.test(i)) {
           more[i.replace('more-', '')] = formData[i];
@@ -530,7 +533,6 @@ var validate = __webpack_require__(/*! ../../common/extend/validate.js */ 85);va
       }
       formData.more = more;
       formData.id = this.detailData.id;
-
 
       uni.showLoading({
         title: '发布中',

@@ -239,6 +239,30 @@ var _default =
     }, 200);
   },
   methods: {
+    initName: function initName() {
+      if (this.defaultSelectedVal && !this.defaultSelectedName) {
+        var allRegion = this.allRegion;
+        var value = this.defaultSelectedVal.split(',');
+        var str = '';
+        allRegion.forEach(function (one) {
+          if (value.includes(String(one.id))) {
+            str += str ? ',' + one.name : one.name;
+          }
+          one.child.forEach(function (item) {
+            if (value.includes(String(item.id))) {
+              str += str ? ',' + item.name : item.name;
+            }
+            item.child && item.child.forEach(function (obj) {
+              if (value.includes(String(obj.id))) {
+                str += str ? ',' + obj.name : obj.name;
+              }
+            });
+          });
+        });
+        this.confirmName = str;
+        this.$emit('click', { regionId: this.confirmId, regionName: this.confirmName });
+      }
+    },
     requestRegion: function requestRegion() {var _this3 = this;
       var storageName = 'allRegion';
       var _this = this;
@@ -247,6 +271,7 @@ var _default =
         success: function success(res) {
           var region = res.data.all;
           _this.allRegion = region;
+          _this3.initName();
         },
         fail: function fail(err) {
           _this3.request.post(_this3.api.getAllRegion, {
@@ -258,6 +283,7 @@ var _default =
                 data: res.data });
 
               _this.allRegion = res.data.all;
+              _this3.initName();
             }
           }).catch(function (error) {
             console.log('Error:', error);
