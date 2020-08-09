@@ -183,6 +183,14 @@
 							uni.navigateTo({
 								url:urlArray[e.tapIndex]
 							})
+						}else{
+							uni.showModal({
+								title:'提示',
+								content:'材料发布请联系官方',
+								success:(e=>{
+									console.log(e)
+								})
+							})
 						}
 					},fail: (e) => {
 						console.log('fail:',e)

@@ -9,15 +9,16 @@
 			<view class="form-group">
 				<view class="title">专业工种</view>
 				<input placeholder="请选择专业工种" :value="cateName" disabled="true" @click="togglePopup('open','cate_id')"></input>
-				<input type="text" :value="cateId" name="cate_id" class="hidden"/>
+				<input type="text" :value="cateId" name="cate_id" class="hidden" />
 				<uni-popup ref="cate_id" :custom="true">
-					<popup-cate headerTitle="请选择专业工种" cateType="zhaohuo" overstepLengthTips="专业工种" chooseLength="3" @close="togglePopup" @click="confirmCateChoose"></popup-cate>
+					<popup-cate headerTitle="请选择专业工种" cateType="zhaohuo" overstepLengthTips="专业工种" chooseLength="3" @close="togglePopup"
+					 @click="confirmCateChoose"></popup-cate>
 				</uni-popup>
 			</view>
 			<view class="form-group">
 				<view class="title">接活区域</view>
 				<input placeholder="请选择接活区域" :value="regionName" disabled="true" @click="togglePopup('open','region_id')"></input>
-				<input type="text" :value="regionId" name="region_id" class="hidden"/>
+				<input type="text" :value="regionId" name="region_id" class="hidden" />
 				<uni-popup ref="region_id" :custom="true">
 					<popup-region headerTitle="请选择接活区域" overstepLengthTips="接活区域" chooseLength="3" @close="togglePopup" @click="confirmRegionChoose"></popup-region>
 				</uni-popup>
@@ -34,15 +35,18 @@
 			</view>
 			<view class="xq-title">找活详情</view>
 			<view class="form-group" style="border:none;">
-				<textarea v-if="isTextAreaShow" @input="bindTextArea" :value="textAreaContent" name="content" maxlength="750" placeholder="请输入找活详情（如会做什么、工作经历、期望工资、期望结款方式/周期等），有助于您更快、更准确的找到好工作~"/>
+				<textarea v-if="isTextAreaShow" @input="bindTextArea" :value="textAreaContent" name="content" maxlength="750"
+				 placeholder="请输入找活详情（如会做什么、工作经历、期望工资、期望结款方式/周期等），有助于您更快、更准确的找到好工作~" />
 				<view class="view-textarea" v-else>{{textAreaContent}}</view>
 			</view>
 			<upload-image length="6" tips="可上传做过的工程照片、完工现场照片等" @getImageUrl="getImageUrl"></upload-image>
+			<upload-image title="上传身份证" length="1" tips="可上传做过的工程照片、完工现场照片等" @getImageUrl="getIdCardImageUrl"></upload-image>
 			<publish-tcp @result="getPublishTcpValue" tcpType="zhaohuo" v-if="tcpStatus"></publish-tcp>
 			<view class="form-group form-button_box">
 				<input type="text" name="type" class="hidden" value="2" />
 				<input type="text" name="is_tcp" class="hidden" :value="isTcp" v-if="tcpStatus"/>
 				<input type="text" class="hidden" name="imgUrl" maxlength="-1" :value="imageList"/>
+				<input type="text" class="hidden" name="hand_id_card" maxlength="-1" :value="idCardImageList"/>
 				<input type="text" name="user_id" class="hidden" :value="userInfo.uid" />
 				<button type="default" formType="submit" class="submit-btn">立即发布</button>
 			</view>
@@ -69,6 +73,7 @@
 				regionId:'',
 				regionName:'',
 				imageList:[],
+				idCardImageList:[],
 				isTcp:'',
 				tcpStatus:1,
 				isTextAreaShow:true,
@@ -114,6 +119,9 @@
 			getImageUrl(e){
 				this.imageList = e;
 			},
+			getIdCardImageUrl(e){
+				this.idCardImageList = e;
+			},
 			getPublishTcpValue(e){
 				this.isTcp = e.value;
 				this.tcpStatus = e.status;
@@ -141,6 +149,12 @@
 				if(!result){
 					this.func.msg(validate.error);
 					return;
+				}
+				if(formData.hand_id_card){
+					formData.more={
+						hand_id_card:formData.hand_id_card
+					}
+					delete formData.hand_id_card
 				}
 				uni.showLoading({
 					title:'发布中',

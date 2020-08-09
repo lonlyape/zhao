@@ -9,6 +9,43 @@
 					<view class="tab">NEW</view>
 				</view>
 			</view>
+			
+			<view class="row row_2">
+				<view class="row_left">
+					<uni-icon type="location-filled" size="24" color="#acacac" style="display: inline-block;vertical-align: middle;"></uni-icon>
+					<texe>{{addr}}</texe>
+				</view>
+				<view class="row_right">
+					<view>{{option.publish_time}}</view>
+				</view>
+			</view>
+			<view class="row row_3">
+				<view class="row_left">
+					接活区域：{{workAddr}}
+				</view>
+			</view>
+			<view class="row row_4">
+				<view class="row_left">
+					工种：{{workType}}
+				</view>
+			</view>
+			<view class="foot_box">
+				<view class="left">
+					<image class="left_img" v-bind:src="user.head_img" mode=""></image>
+				</view>
+				<view class="center">
+					<view class="p_1">
+						{{option.contact}}
+						<text class="real_name" v-if="user.is_certification">已实名</text>
+						<text class="status_t">{{option.status_text}}</text>
+					</view>
+					<view class="p_2">{{option.phone}}</view>
+				</view>
+				<view class="right">
+					<button class="handler_button" size="mini">立即联系</button>
+				</view>
+			</view>
+			<!-- 
 			<view class="foot_box none_border">
 				<view class="left">
 					<image class="left_img" v-bind:src="user.head_img" mode=""></image>
@@ -40,7 +77,7 @@
 				<view class="right">
 					<button class="handler_button" size="mini">立即联系</button>
 				</view>
-			</view>
+			</view> -->
 		</view>
 	</common-box>
 </template>
@@ -65,12 +102,24 @@
 			user:function(){
 				return this.option.user
 			},
+			workAddr:function(){
+				let workTypeList=this.option.region_list;
+				let str=''
+				workTypeList.forEach(one=>{
+					str+=str?','+one.name:one.name
+				})
+				return str
+			},
 			workType:function(){
 				let workTypeList=this.option.cate;
 				let str=''
 				workTypeList.forEach(one=>{
 					str+=str?','+one.name:one.name
 				})
+				let more=this.option.more
+				if(more.gongchanggongzhong){
+					 str=more.gongchanggongzhong
+				}
 				return str
 			},
 			xinzi:function(){

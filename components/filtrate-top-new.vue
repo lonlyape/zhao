@@ -347,11 +347,14 @@
 					case 'chengbao':
 					return '班组/单位';
 					break;
-					case 'zhaohuo':
-					return '班组/单位';
-					break;
 					case 'gczp':
 					return '班组/单位';
+					break;
+					case 'zhaohuo':
+					return '建筑工人/厂工';
+					break;
+					case 'zhaogong':
+					return '建筑工人/厂工';
 					break;
 				}
 			}

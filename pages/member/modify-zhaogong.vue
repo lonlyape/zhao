@@ -14,6 +14,14 @@
 					<popup-cate headerTitle="请选择所需工种" cateType="zhaogong" overstepLengthTips="所需工种" chooseLength="5" :defaultSelectedVal="data.cate.id" :defaultSelectedName="cateName" @close="togglePopup" @click="confirmChoose"></popup-cate>
 				</uni-popup>
 			</view>
+			<view class="form-group">
+				<view class="title">薪资</view>
+				<input type="number" name="xinzi" :value="xinzi_value" :placeholder="xinzi_placeholder" @input="bindXinziInput" :disabled="xinzileixing_value=='0'">
+				<picker @change="bindXinzileixingChange" :value="xinzileixing_value" :range="xinzileixing" range-key="name" style="width:150upx;position:absolute;right:0;z-index: 99999;">
+					<view style="width:150upx">{{xinzileixing[xinzileixing_value].name}} ▼</view>
+				</picker>
+				<input type="text" class="hidden" name="xinzileixing" :value="xinzileixing_value">
+			</view>
 			<choose-region @confirm="getChooseRegionVal" :defaultSelectedVal="data.region"></choose-region>
 			<input type="text" :value="region_id" name="region_id" class="hidden">
 			<view class="form-group">
@@ -58,7 +66,15 @@
 				data:null,
 				region_id:'',
 				cateName:'',
-				cateId:'',
+				cateId:'',				
+				xinzi_placeholder:'格式，例：3000-5000',
+				xinzileixing:[
+					{name:'面议',value:0},
+					{name:'月/元',value:1},
+					{name:'日/元',value:2}
+				],
+				xinzileixing_value:1,
+				xinzi_value:'',
 				isTextAreaShow:true,
 				textAreaContent:''
 			}
@@ -111,6 +127,9 @@
 					if(data.region.city_id != ''){
 						region.push(data.region.city_id);
 					}
+					console.log(data.more)
+					_this.xinzi_value=data.more.xinzi;
+					_this.xinzileixing_value = Number(data.more.xinzileixing);
 					_this.team = data.team;
 					_this.cateId = data.cate.id;
 					_this.cateName = data.cate.name;
@@ -118,6 +137,22 @@
 					_this.textAreaContent =  data.content;
 				}
 				uni.hideLoading();
+			},
+			bindXinzileixingChange(e){
+				this.xinzi_value = '';
+				if(e.detail.value == '0'){
+					this.xinzileixing_value = '0';
+					this.xinzi_placeholder = '';
+				}else if(e.detail.value == '1'){
+					this.xinzileixing_value = '1';
+					this.xinzi_placeholder = '格式，例：3000-5000';
+				}else if(e.detail.value == '2'){
+					this.xinzileixing_value = '2';
+					this.xinzi_placeholder = '请输入薪资';
+				}
+			},
+			bindXinziInput(e){
+				this.xinzi_value = e.detail.value;
 			},
 			togglePopup(e,ref) {
 				if(typeof e == 'object'){
@@ -154,6 +189,10 @@
 				if(!result){
 					this.func.msg(validate.error);
 					return;
+				}
+				formData.more={
+					xinzi:formData.xinzi,
+					xinzileixing:formData.xinzileixing
 				}
 				uni.showLoading({
 					title:'修改中',

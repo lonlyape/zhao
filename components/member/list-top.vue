@@ -144,7 +144,15 @@
 		},
 		methods:{
 			jump:function(url,t){
-				if(t){
+				if(url=='publish-cailiao'){
+					uni.showModal({
+						title:'提示',
+						content:'材料发布请联系官方',
+						success:(e=>{
+							console.log(e)
+						})
+					})
+				}else if(t){
 					uni.navigateTo({
 						url:url
 					})

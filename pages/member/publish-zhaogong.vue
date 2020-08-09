@@ -14,6 +14,14 @@
 					<popup-cate headerTitle="请选择所需工种" cateType="zhaogong" overstepLengthTips="所需工种" chooseLength="5" @close="togglePopup" @click="confirmChoose"></popup-cate>
 				</uni-popup>
 			</view>
+			<view class="form-group">
+				<view class="title">薪资</view>
+				<input type="number" name="xinzi" :value="xinzi_value" :placeholder="xinzi_placeholder" @input="bindXinziInput" :disabled="xinzileixing_value=='0'">
+				<picker @change="bindXinzileixingChange" :value="xinzileixing_value" :range="xinzileixing" range-key="name" style="width:150upx;position:absolute;right:0;z-index: 99999;">
+					<view style="width:150upx">{{xinzileixing[xinzileixing_value].name}} ▼</view>
+				</picker>
+				<input type="text" class="hidden" name="xinzileixing" :value="xinzileixing_value">
+			</view>
 			<choose-region @confirm="getChooseRegionVal"></choose-region>
 			<input type="text" :value="region_id" name="region_id" class="hidden">
 			<view class="form-group">
@@ -58,7 +66,15 @@
 	export default{
 		data(){
 			return{
-				region_id:'',
+				region_id:'',				
+				xinzi_placeholder:'格式，例：3000-5000',
+				xinzileixing:[
+					{name:'面议',value:0},
+					{name:'月/元',value:1},
+					{name:'日/元',value:2}
+				],
+				xinzileixing_value:1,
+				xinzi_value:'',
 				teamIndex:0,
 				teamArray:[],
 				teamStatus:false,
@@ -95,6 +111,22 @@
 					this.isTextAreaShow = false;
 					this.$refs[ref].open();
 				}	
+			},
+			bindXinzileixingChange(e){
+				this.xinzi_value = '';
+				if(e.detail.value == '0'){
+					this.xinzileixing_value = '0';
+					this.xinzi_placeholder = '';
+				}else if(e.detail.value == '1'){
+					this.xinzileixing_value = '1';
+					this.xinzi_placeholder = '格式，例：3000-5000';
+				}else if(e.detail.value == '2'){
+					this.xinzileixing_value = '2';
+					this.xinzi_placeholder = '请输入薪资';
+				}
+			},
+			bindXinziInput(e){
+				this.xinzi_value = e.detail.value;
 			},
 			confirmChoose(e){
 				this.cateId = e.cateId;
@@ -134,6 +166,11 @@
 					this.func.msg(validate.error);
 					return;
 				}
+				formData.more={
+					xinzi:formData.xinzi,
+					xinzileixing:formData.xinzileixing
+				}
+				console.log(formData)
 				uni.showLoading({
 					title:'发布中',
 					mask:true

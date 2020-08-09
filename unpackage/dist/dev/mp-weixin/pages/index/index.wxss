@@ -53,6 +53,10 @@ page {
   left: -16rpx;
   right: -16rpx;
 }
+.page_index .scroll_box {
+  width: 100%;
+  overflow: scroll;
+}
 .page_index .tab_box {
   display: -webkit-box;
   display: -webkit-flex;
@@ -61,6 +65,7 @@ page {
   color: #fff;
   position: relative;
   z-index: 100;
+  width: 113%;
 }
 .page_index .tab_box .tab_item {
   -webkit-box-flex: 1;

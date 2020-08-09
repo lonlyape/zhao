@@ -7,22 +7,26 @@
 				 :radius="100" @confirm="search" clearButton="none" cancelButton="none"></uni-search-bar>
 			</view>
 		</view>
-		<view class="tab_box">
-			<view class="tab_item" v-bind:class="{'alive':alive==key}" v-for="(one,key) in dataList" v-bind:key="one.tabName"
-			 v-on:click="selectTab(key)">
-				<span>{{one.tabName}}</span>
-				<view class="tab_left" v-if="alive==key-1"></view>
-				<view class="tab_right" v-if="alive==key+1"></view>
+		<view class="scroll_box">
+			<view class="tab_box">
+				<view class="tab_item" v-bind:class="{'alive':alive==key}" v-for="(one,key) in dataList" v-bind:key="one.tabName"
+				 v-on:click="selectTab(key)">
+					<span>{{one.tabName}}</span>
+					<view class="tab_left" v-if="alive==key-1"></view>
+					<view class="tab_right" v-if="alive==key+1"></view>
+				</view>
 			</view>
 		</view>
-		<filtrate-top v-if="alive<4" :type="fileOption.type" @filterParam="filterParam" :isRequireTeam="fileOption.isRequireTeam" :isClearChooseParam="fileOption.isClearChooseParam"></filtrate-top>
-		<view :class="{'alive_4_view':alive==4}">
+		<filtrate-top v-if="alive<5" :type="fileOption.type" @filterParam="filterParam" :isRequireTeam="fileOption.isRequireTeam"
+		 :isClearChooseParam="fileOption.isClearChooseParam" :isRequireCate="fileOption.isRequireCate"></filtrate-top>
+		<view :class="{'alive_4_view':alive==5}">
 			<template v-for="one in dataList[alive].list">
 				<contract v-if="alive==0" v-bind:key="one.id" v-bind:option="one"></contract>
 				<construction v-if="alive==1" v-bind:key="one.id" v-bind:option="one"></construction>
-				<construction v-if="alive==2" v-bind:key="one.id" v-bind:option="one"></construction>
-				<worker v-if="alive==3" v-bind:key="one.id" v-bind:option="one"></worker>
-				<materials v-if="alive==4" v-bind:key="one.id" v-bind:option="one"></materials>
+				<worker v-if="alive==2" v-bind:key="one.id" v-bind:option="one"></worker>
+				<construction v-if="alive==3" v-bind:key="one.id" v-bind:option="one"></construction>
+				<worker v-if="alive==4" v-bind:key="one.id" v-bind:option="one"></worker>
+				<materials v-if="alive==5" v-bind:key="one.id" v-bind:option="one"></materials>
 			</template>
 		</view>
 		<view class="buttom_text_load_more">
@@ -56,10 +60,11 @@
 				dataList: [],
 				refreshing: false,
 				params: {},
-				fileOption:{
-					type:'chengbao',
-					isRequireTeam:true,
-					isClearChooseParam:false,
+				fileOption: {
+					type: 'chengbao',
+					isRequireTeam: true,
+					isClearChooseParam: false,
+					isRequireCate: false,
 				},
 			}
 		},
@@ -83,7 +88,7 @@
 			}
 		},
 		onLoad: function(option) {
-			
+
 			this.setStyle()
 			this.initDataList()
 			this.getData()
@@ -103,41 +108,54 @@
 			}
 		},
 		methods: {
-			setFileOption(){
+			setFileOption() {
 				switch (this.alive) {
 					case 0:
-						this.fileOption={
-							type:'chengbao',
-							isRequireTeam:true,
-							isClearChooseParam:false,
+						this.fileOption = {
+							type: 'chengbao',
+							isRequireTeam: true,
+							isRequireCate: true,
+							isClearChooseParam: false,
 						}
 						break
 					case 1:
-						this.fileOption={
-							type:'zhaogong',
-							isRequireTeam:false,
-							isClearChooseParam:true,
+						this.fileOption = {
+							type: 'zhaogong',
+							isRequireTeam: false,
+							isRequireCate: true,
+							isClearChooseParam: true,
 						}
 						break
 					case 2:
-						this.fileOption={
-							type:'gczp',
-							isRequireTeam:true,
-							isClearChooseParam:false,
+						this.fileOption = {
+							type: 'zhaohuo',
+							isRequireTeam: true,
+							isRequireCate: true,
+							isClearChooseParam: true,
 						}
 						break
 					case 3:
-						this.fileOption={
-							type:'zhaohuo',
-							isRequireTeam:true,
-							isClearChooseParam:true,
+						this.fileOption = {
+							type: 'gczp',
+							isRequireTeam: true,
+							isRequireCate: false,
+							isClearChooseParam: false,
 						}
 						break
 					case 4:
-						this.fileOption={
-							type:'',
-							isRequireTeam:false,
-							isClearChooseParam:false,
+						this.fileOption = {
+							type: 'zhaogong',
+							isRequireTeam: false,
+							isRequireCate: false,
+							isClearChooseParam: false,
+						}
+						break
+					case 5:
+						this.fileOption = {
+							type: '',
+							isRequireTeam: false,
+							isRequireCate: false,
+							isClearChooseParam: false,
 						}
 						break
 				}
@@ -155,17 +173,17 @@
 				this.getData()
 
 			},
-			filterParam(e){
-				let params={}
-				if(this.params.keyword){
-					params.keyword=this.params.keyword
+			filterParam(e) {
+				let params = {}
+				if (this.params.keyword) {
+					params.keyword = this.params.keyword
 				}
-				for(let i in e){
-					if(e[i]){
-						params[i]=e[i]
+				for (let i in e) {
+					if (e[i]) {
+						params[i] = e[i]
 					}
 				}
-				this.params=params
+				this.params = params
 				this.initQuery()
 				this.getData()
 			},
@@ -195,6 +213,13 @@
 					status: 'more',
 					url: this.api.getWorkList + '?type=1'
 				}, {
+					tabName:'工人找活',
+					list: [],
+					page: 1,
+					pageSize: 10,
+					status: 'more',
+					url: this.api.getWorkList + '?type=2'
+				}, {
 					tabName: '工厂招聘',
 					list: [],
 					page: 1,
@@ -207,7 +232,7 @@
 					page: 1,
 					pageSize: 10,
 					status: 'more',
-					url: this.api.getWorkList + '?type=2'
+					url: this.api.getWorkList + '?type=4'
 				}, {
 					tabName: '材料采购',
 					list: [],
@@ -218,10 +243,10 @@
 				}]
 				this.dataList = list
 			},
-			initQuery(){
-				this.dataList.forEach(one=>{
-					one.page=1
-					one.status='more'
+			initQuery() {
+				this.dataList.forEach(one => {
+					one.page = 1
+					one.status = 'more'
 				})
 			},
 			async getData() {
@@ -238,9 +263,9 @@
 					data: params
 				}).then(res => {
 					if (res.code) {
-						if(res.data){
-							res.data.forEach(one=>{
-								one.phone=one.phone.substring(0,3)+'*****'+one.phone.substring(7)
+						if (res.data) {
+							res.data.forEach(one => {
+								one.phone = one.phone.substring(0, 3) + '*****' + one.phone.substring(7)
 							})
 						}
 						if (params.page == 1) {
@@ -262,11 +287,11 @@
 							dataObj.status = 'more'
 						}
 					} else {
-						if(res.msg==='无数据'){
-							if(params.page==1){
-								dataObj.list=[]
+						if (res.msg === '无数据') {
+							if (params.page == 1) {
+								dataObj.list = []
 								dataObj.status = 'nomore'
-							}else{
+							} else {
 								dataObj.status = 'nomore'
 							}
 						}
@@ -312,6 +337,10 @@
 				}
 			}
 		}
+		.scroll_box{
+			width:100%;
+			overflow: scroll;
+		}
 
 		.tab_box {
 			display: flex;
@@ -319,6 +348,7 @@
 			color: #fff;
 			position: relative;
 			z-index: 100;
+			width: 113%;
 
 			.tab_item {
 				flex: 1;
@@ -329,24 +359,26 @@
 				height: 92rpx;
 				line-height: 92rpx;
 				overflow: hidden;
-				.tab_left{
-					width:0;
-					height:0;
+
+				.tab_left {
+					width: 0;
+					height: 0;
 					position: absolute;
-					border:14rpx solid transparent;
-					border-left-color:#fff;
+					border: 14rpx solid transparent;
+					border-left-color: #fff;
 					border-top-width: 92rpx;
-					top:0;
+					top: 0;
 					left: 0;
 				}
-				.tab_right{
-					width:0;
-					height:0;
+
+				.tab_right {
+					width: 0;
+					height: 0;
 					position: absolute;
-					border:14rpx solid transparent;
-					border-right-color:#fff;
+					border: 14rpx solid transparent;
+					border-right-color: #fff;
 					border-top-width: 92rpx;
-					top:0;
+					top: 0;
 					right: 0;
 				}
 

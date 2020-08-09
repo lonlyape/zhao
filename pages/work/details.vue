@@ -57,6 +57,9 @@
 					case 2:
 						title = '工人找活详情'
 						break
+					case 4:
+						title = '找工人详情'
+						break
 					default:
 						title = '详情'
 				}
@@ -211,6 +214,10 @@
 								} else {
 									value += value ? (',' + i || workCate[i]) : (i || workCate[i])
 								}
+							}
+							if (datas.type == 4) {
+								label = '厂工工种'
+								value = datas.more.gongchanggongzhong
 							}
 							l.push(this.setCell(label, value))
 						}
