@@ -65,7 +65,7 @@
 						url:e.pagePath
 					})
 				}else{
-					if(e.text=='发布'){
+					if(e.text=='发布招工'){
 						this.showFlexBox=true
 					}else{
 						this.showListBox=true

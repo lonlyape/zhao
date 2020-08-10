@@ -13,13 +13,14 @@
 				<input class="hidden" name="team" :value="team_value"></input>
 				<checkbox-group @change="bindTeamChange">
 					<lable>
-						<checkbox value="0"/>不限
+						<checkbox value="0" />不限
 					</lable>
 				</checkbox-group>
 			</view>
 			<view class="form-group">
 				<view class="title">薪资</view>
-				<input type="number" name="xinzi" :value="xinzi_value" :placeholder="xinzi_placeholder" @input="bindXinziInput" :disabled="xinzileixing_value=='0'">
+				<input type="number" name="xinzi" :value="xinzi_value" :placeholder="xinzi_placeholder" @input="bindXinziInput"
+				 :disabled="xinzileixing_value=='0'">
 				<picker @change="bindXinzileixingChange" :value="xinzileixing_value" :range="xinzileixing" range-key="name" style="width:150upx;position:absolute;right:0;z-index: 99999;">
 					<view style="width:150upx">{{xinzileixing[xinzileixing_value].name}} ▼</view>
 				</picker>
@@ -27,7 +28,7 @@
 			</view>
 			<view class="form-group">
 				<view class="title">学历要求</view>
-				<picker @change="bindEducationChange" :value="xueliyaoqiu_index" :range="gczpRestsData.education" >
+				<picker @change="bindEducationChange" :value="xueliyaoqiu_index" :range="gczpRestsData.education">
 					<view v-if="xueliyaoqiu_status">{{gczpRestsData.education[xueliyaoqiu_index]}}</view>
 					<input type="text" disabled="disabled" placeholder="请选择学历要求" v-else>
 				</picker>
@@ -44,19 +45,19 @@
 			<view class="form-group">
 				<view class="title">工作类型</view>
 				<checkbox-group @change="bindGongzuoleixingChange">
-                    <view v-for="(item,index) in gczpRestsData.jobType" :key="index" style="margin: 15upx;display: inline-block;">
-                        <checkbox :value="item" />{{item}}
-                    </view>
-                </checkbox-group>
+					<view v-for="(item,index) in gczpRestsData.jobType" :key="index" style="margin: 15upx;display: inline-block;">
+						<checkbox :value="item" />{{item}}
+					</view>
+				</checkbox-group>
 				<input type="text" class="hidden" name="gongzuoleixing" :value="gongzuoleixing_value" />
 			</view>
 			<view class="form-group">
 				<view class="title">职位福利</view>
 				<checkbox-group @change="bindZhiweifuliChange">
-			        <view v-for="(item,index) in gczpRestsData.welfare" :key="index" style="margin: 15upx;display: inline-block;">
-			            <checkbox :value="item" />{{item}}
-			        </view>
-			    </checkbox-group>
+					<view v-for="(item,index) in gczpRestsData.welfare" :key="index" style="margin: 15upx;display: inline-block;">
+						<checkbox :value="item" />{{item}}
+					</view>
+				</checkbox-group>
 				<input type="text" class="hidden" name="zhiweifuli" :value="zhiweifuli_value" />
 			</view>
 			<view class="form-group">
@@ -75,7 +76,8 @@
 			</view>
 			<view class="xq-title">直聘详情</view>
 			<view class="form-group" style="border:none;">
-				<textarea v-if="isTextAreaShow" @input="bindTextArea" :value="textAreaContent" name="content" maxlength="750" placeholder="请输入详情，（比如：尽可能详细描述岗位、薪资待遇、工厂需求情况，便于应聘者了解）"/>
+				<textarea v-if="isTextAreaShow" @input="bindTextArea" :value="textAreaContent" name="content" maxlength="750"
+				 placeholder="请输入详情，（比如：尽可能详细描述岗位、薪资待遇、工厂需求情况，便于应聘者了解）" />
 				<view class="view-textarea" v-else>{{textAreaContent}}</view>
 			</view>
 			<publish-tcp @result="getPublishTcpValue" tcpType="chengbao" v-if="tcpStatus"></publish-tcp>
@@ -137,16 +139,28 @@
 		onLoad() {
 			let storageName = 'gczpRestsData';
 			let _this = this;
+			function setData(data){
+				if(data.welfare){
+					let list=data.welfare.filter(one=>one.length>2)
+					let list_tow=data.welfare.filter(one=>one.length<=2)
+					list.splice(2,0,list_tow[0])
+					list.splice(5,0,list_tow[1])
+					
+					data.welfare=list
+				}
+			}
 			uni.getStorage({
 				key:storageName,
 				success:(res=>{
 					_this.gczpRestsData = res.data;
+					setData(_this.gczpRestsData)
 				}),
 				fail:(err=>{
 					this.request.get(this.api.getGczpRestsData,{
 						data:{},
 					}).then(res=>{
 						_this.gczpRestsData = res.data;
+						setData(_this.gczpRestsData)
 						uni.setStorage({
 							key:storageName,
 							data:res.data

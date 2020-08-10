@@ -46,7 +46,7 @@
 				<input type="text" name="type" class="hidden" value="2" />
 				<input type="text" name="is_tcp" class="hidden" :value="isTcp" v-if="tcpStatus"/>
 				<input type="text" class="hidden" name="imgUrl" maxlength="-1" :value="imageList"/>
-				<input type="text" class="hidden" name="hand_id_card" maxlength="-1" :value="idCardImageList"/>
+				<input type="text" class="hidden" name="hand_id_card_url" maxlength="-1" :value="idCardImageList"/>
 				<input type="text" name="user_id" class="hidden" :value="userInfo.uid" />
 				<button type="default" formType="submit" class="submit-btn">立即发布</button>
 			</view>
@@ -149,12 +149,6 @@
 				if(!result){
 					this.func.msg(validate.error);
 					return;
-				}
-				if(formData.hand_id_card){
-					formData.more={
-						hand_id_card:formData.hand_id_card
-					}
-					delete formData.hand_id_card
 				}
 				uni.showLoading({
 					title:'发布中',

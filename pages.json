@@ -178,7 +178,7 @@
 	}, {
 		"path": "pages/member/publish-cailiao-list",
 		"style": {
-			"navigationBarTitleText": "已发布二手交易",
+			"navigationBarTitleText": "已发布材料信息",
 			"enablePullDownRefresh": true
 		}
 	}, {
