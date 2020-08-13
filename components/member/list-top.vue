@@ -20,6 +20,7 @@
 			我发布的{{title}}
 			<text @click="jump(publishUrl,true)">去发布</text>
 		</view>
+		<remind ref="remind"></remind>
 	</view>
 </template>
 
@@ -31,134 +32,138 @@
 	import gczp from "@/components/member/annotation/gczp";
 	import erShou from "@/components/member/annotation/ershou";
 	import cailiao from "@/components/member/annotation/cailiao";
-	export default{
-		data(){
-			return{
-				list:[
-					{
-						name:"已发布工程承包",
-						type:"chengbao",
-						url:"publish-chengbao-list",
-						img:"published-zh"
-					},{
-						name:"已发布招工信息",
-						type:"zhaogong",
-						url:"publish-zhaogong-list",
-						img:"published-zg"
-					},{
-						name:"已发布工人找活",
-						type:"zhaohuo",
-						url:"publish-zhaohuo-list",
-						img:"published-zh"
-					},{
-						name:"已发布找厂工信息",
-						type:"gczh",
-						url:"publish-gczh-list",
-						img:"published-ershou"
-					},{
-						name:"已发布工厂直聘",
-						type:"gczp",
-						url:"publish-gczp-list",
-						img:"published-ershou"
-					}/* ,{
-						name:"已发布二手交易",
-						type:"ershou",
-						url:"publish-ershou-list",
-						img:"published-ershou"
-					} */,{
-						name:"已发布材料",
-						type:"cailiao",
-						url:"publish-cailiao-list",
-						img:"published-ershou"
-					}	
+	import remind from '@/components/remind.vue'
+	export default {
+		data() {
+			return {
+				list: [{
+						name: "已发布工程承包",
+						type: "chengbao",
+						url: "publish-chengbao-list",
+						img: "published-zh"
+					}, {
+						name: "已发布招工信息",
+						type: "zhaogong",
+						url: "publish-zhaogong-list",
+						img: "published-zg"
+					}, {
+						name: "已发布工人找活",
+						type: "zhaohuo",
+						url: "publish-zhaohuo-list",
+						img: "published-zh"
+					}, {
+						name: "已发布找厂工信息",
+						type: "gczh",
+						url: "publish-gczh-list",
+						img: "published-ershou"
+					}, {
+						name: "已发布工厂直聘",
+						type: "gczp",
+						url: "publish-gczp-list",
+						img: "published-ershou"
+					}
+					/* ,{
+											name:"已发布二手交易",
+											type:"ershou",
+											url:"publish-ershou-list",
+											img:"published-ershou"
+										} */
+					, {
+						name: "已发布材料",
+						type: "cailiao",
+						url: "publish-cailiao-list",
+						img: "published-ershou"
+					}
 				]
 			}
 		},
-		name:'list-top',
-		components:{
+		name: 'list-top',
+		components: {
 			zhaoGong,
 			zhaoHuo,
 			chengBao,
 			gczh,
 			gczp,
+			remind,
 			erShou,
 			cailiao,
 		},
-		props:{
-			defaultActive:{
-				type:String,
-				default:''
+		props: {
+			defaultActive: {
+				type: String,
+				default: ''
 			}
 		},
-		computed:{
-			title:function(){
-				switch(this.defaultActive){
+		computed: {
+			title: function() {
+				switch (this.defaultActive) {
 					case 'chengbao':
-					return '工程承包';
-					break;
+						return '工程承包';
+						break;
 					case 'zhaogong':
-					return '招工信息';
-					break;
+						return '招工信息';
+						break;
 					case 'zhaohuo':
-					return '工人找活';
-					break;
+						return '工人找活';
+						break;
 					case 'gczh':
-					return '厂工信息';
-					break;
+						return '厂工信息';
+						break;
 					case 'gczp':
-					return '工厂直聘';
-					break;
+						return '工厂直聘';
+						break;
 					case 'ershou':
-					return '二手交易';
-					break;
+						return '二手交易';
+						break;
 					case 'cailiao':
-					return '材料';
-					break;
+						return '材料';
+						break;
 				}
 			},
-			publishUrl:function(){
-				switch(this.defaultActive){
+			publishUrl: function() {
+				switch (this.defaultActive) {
 					case 'chengbao':
-					return 'publish-chengbao';
-					break;
+						return 'publish-chengbao';
+						break;
 					case 'zhaogong':
-					return 'publish-zhaogong';
-					break;
+						return 'publish-zhaogong';
+						break;
 					case 'zhaohuo':
-					return 'publish-zhaohuo';
-					break;
+						return 'publish-zhaohuo';
+						break;
 					case 'gczh':
-					return 'publish-gczh';
-					break;
+						return 'publish-gczh';
+						break;
 					case 'gczp':
-					return 'publish-gczp';
-					break;
+						return 'publish-gczp';
+						break;
 					case 'ershou':
-					return 'publish-ershou';
-					break;
+						return 'publish-ershou';
+						break;
 					case 'cailiao':
-					return 'publish-cailiao';
-					break;
+						return 'publish-cailiao';
+						break;
 				}
 			}
 		},
-		methods:{
-			jump:function(url,t){
-				if(url=='publish-cailiao'){
-					uni.showModal({
-						title:'提示',
-						content:'材料发布请联系官方',
-						success:(e=>{
-							console.log(e)
-						})
-					})
-				}else if(t){
+		methods: {
+			jump: function(url, t) {
+				if (url == 'publish-cailiao') {
+					// uni.showModal({
+					// 	title: '提示',
+					// 	content: '材料发布请联系官方',
+					// 	success: (e => {
+					// 		console.log(e)
+					// 	})
+					// })
+					this.$refs.remind.setShowMask(true)
+				} else if (t) {
 					uni.navigateTo({
-						url:url
+						url: url
 					})
-				}else{
+				} else {
 					uni.redirectTo({
-						url:url
+						url: url
 					})
 				}
 			}
@@ -167,42 +172,49 @@
 </script>
 
 <style lang="scss">
-	.fiexd{
+	.fiexd {
 		position: fixed;
-		top:0;
-		left:0;
+		top: 0;
+		left: 0;
 		right: 0;
 		background-color: $uni-bg-color-grey;
 		z-index: 99;
 	}
-	.tab-wrap{
+
+	.tab-wrap {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		align-content: center;
 		background-color: white;
 		flex-wrap: wrap;
-		.tab-item{
-			padding:20upx 5upx;
-			text{
+
+		.tab-item {
+			padding: 20upx 5upx;
+
+			text {
 				vertical-align: super;
-				margin-left:7upx;
+				margin-left: 7upx;
 			}
-			image{
-				width:40upx;
+
+			image {
+				width: 40upx;
 				height: 40upx;
 			}
 		}
-		.active{
+
+		.active {
 			color: #0099ff;
 		}
 	}
-	.my-publish{
+
+	.my-publish {
 		padding: 20upx 20upx;
-		background-color:white;
+		background-color: white;
 		font-weight: bold;
-		text{
-			font-weight:normal;
+
+		text {
+			font-weight: normal;
 			float: right;
 			color: #0099ff;
 		}

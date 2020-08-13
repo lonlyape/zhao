@@ -227,7 +227,7 @@
 					status: 'more',
 					url: this.api.getWorkList + '?type=5'
 				}, {
-					tabName: '找工人',
+					tabName: '找厂工',
 					list: [],
 					page: 1,
 					pageSize: 10,
@@ -255,6 +255,10 @@
 				let params = {
 					page: dataObj.page++,
 					...this.params
+				}
+				if(alive==0&&params.team_id){
+					params.team=params.team_id
+					delete params.team_id
 				}
 				//请求前动作
 				dataObj.status = 'loading'

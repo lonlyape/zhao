@@ -220,7 +220,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var gczp = function gczp() {__webpack_require__.e(/*! require.ensure | components/member/annotation/gczp */ "components/member/annotation/gczp").then((function () {return resolve(__webpack_require__(/*! @/components/member/annotation/gczp */ 524));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniPopup = function uniPopup() {__webpack_require__.e(/*! require.ensure | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then((function () {return resolve(__webpack_require__(/*! @/components/uni-popup/uni-popup */ 454));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var chooseRegion = function chooseRegion() {__webpack_require__.e(/*! require.ensure | components/member/choose-region */ "components/member/choose-region").then((function () {return resolve(__webpack_require__(/*! @/components/member/choose-region */ 473));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var publishTcp = function publishTcp() {__webpack_require__.e(/*! require.ensure | components/member/publish-tcp */ "components/member/publish-tcp").then((function () {return resolve(__webpack_require__(/*! @/components/member/publish-tcp */ 490));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+
+
+var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var gczp = function gczp() {__webpack_require__.e(/*! require.ensure | components/member/annotation/gczp */ "components/member/annotation/gczp").then((function () {return resolve(__webpack_require__(/*! @/components/member/annotation/gczp */ 531));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniPopup = function uniPopup() {__webpack_require__.e(/*! require.ensure | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then((function () {return resolve(__webpack_require__(/*! @/components/uni-popup/uni-popup */ 461));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var chooseRegion = function chooseRegion() {__webpack_require__.e(/*! require.ensure | components/member/choose-region */ "components/member/choose-region").then((function () {return resolve(__webpack_require__(/*! @/components/member/choose-region */ 480));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var publishTcp = function publishTcp() {__webpack_require__.e(/*! require.ensure | components/member/publish-tcp */ "components/member/publish-tcp").then((function () {return resolve(__webpack_require__(/*! @/components/member/publish-tcp */ 497));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
 
@@ -267,16 +269,28 @@ var validate = __webpack_require__(/*! ../../common/extend/validate.js */ 86);va
   onLoad: function onLoad() {var _this2 = this;
     var storageName = 'gczpRestsData';
     var _this = this;
+    function setData(data) {
+      if (data.welfare) {
+        var list = data.welfare.filter(function (one) {return one.length > 2;});
+        var list_tow = data.welfare.filter(function (one) {return one.length <= 2;});
+        list.splice(2, 0, list_tow[0]);
+        list.splice(5, 0, list_tow[1]);
+
+        data.welfare = list;
+      }
+    }
     uni.getStorage({
       key: storageName,
       success: function success(res) {
         _this.gczpRestsData = res.data;
+        setData(_this.gczpRestsData);
       },
       fail: function fail(err) {
         _this2.request.get(_this2.api.getGczpRestsData, {
           data: {} }).
         then(function (res) {
           _this.gczpRestsData = res.data;
+          setData(_this.gczpRestsData);
           uni.setStorage({
             key: storageName,
             data: res.data });

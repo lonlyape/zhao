@@ -219,7 +219,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var cell = function cell() {__webpack_require__.e(/*! require.ensure | components/common/cell */ "components/common/cell").then((function () {return resolve(__webpack_require__(/*! @/components/common/cell.vue */ 412));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var popupLogin = function popupLogin() {__webpack_require__.e(/*! require.ensure | components/popup-login */ "components/popup-login").then((function () {return resolve(__webpack_require__(/*! @/components/popup-login */ 447));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tabBar = function tabBar() {__webpack_require__.e(/*! require.ensure | components/tabbar */ "components/tabbar").then((function () {return resolve(__webpack_require__(/*! @/components/tabbar.vue */ 388));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+
+var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var cell = function cell() {__webpack_require__.e(/*! require.ensure | components/common/cell */ "components/common/cell").then((function () {return resolve(__webpack_require__(/*! @/components/common/cell.vue */ 412));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var popupLogin = function popupLogin() {__webpack_require__.e(/*! require.ensure | components/popup-login */ "components/popup-login").then((function () {return resolve(__webpack_require__(/*! @/components/popup-login */ 447));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tabBar = function tabBar() {__webpack_require__.e(/*! require.ensure | components/tabbar */ "components/tabbar").then((function () {return resolve(__webpack_require__(/*! @/components/tabbar.vue */ 388));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var remind = function remind() {__webpack_require__.e(/*! require.ensure | components/remind */ "components/remind").then((function () {return resolve(__webpack_require__(/*! @/components/remind.vue */ 454));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+
 
 
 
@@ -229,6 +231,7 @@ var validate = __webpack_require__(/*! ../../common/extend/validate.js */ 86);va
 {
   components: {
     cell: cell,
+    remind: remind,
     tabBar: tabBar,
     popupLogin: popupLogin },
 
@@ -301,7 +304,7 @@ var validate = __webpack_require__(/*! ../../common/extend/validate.js */ 86);va
     setShowDao: function setShowDao() {
       this.showDao = !this.showDao;
     },
-    showPublishMenu: function showPublishMenu() {
+    showPublishMenu: function showPublishMenu() {var _this3 = this;
       if (!this.hasLogin) {
         this.isPopupLogin = true;
         return;
@@ -316,13 +319,14 @@ var validate = __webpack_require__(/*! ../../common/extend/validate.js */ 86);va
               url: urlArray[e.tapIndex] });
 
           } else {
-            uni.showModal({
-              title: '提示',
-              content: '材料发布请联系官方',
-              success: function success(e) {
-                console.log(e);
-              } });
-
+            // uni.showModal({
+            // 	title:'提示',
+            // 	content:'材料发布请联系官方',
+            // 	success:(e=>{
+            // 		console.log(e)
+            // 	})
+            // })
+            _this3.$refs.remind.setShowMask(true);
           }
         }, fail: function fail(e) {
           console.log('fail:', e);
@@ -347,7 +351,7 @@ var validate = __webpack_require__(/*! ../../common/extend/validate.js */ 86);va
         url: url });
 
     },
-    signin: function signin() {var _this3 = this;
+    signin: function signin() {var _this4 = this;
       if (!this.hasLogin) {
         this.isPopupLogin = true;
         return;
@@ -361,10 +365,10 @@ var validate = __webpack_require__(/*! ../../common/extend/validate.js */ 86);va
       then(function (res) {
         uni.hideLoading();
         if (res.code) {
-          _this3.userInfo.integral = res.data.userbean != null ? res.data.userbean : _this3.userInfo.integral;
-          _this3.userInfo.signin.today_is_signin = true;
-          _this3.setShowDao();
-          _this3.login(_this3.userInfo);
+          _this4.userInfo.integral = res.data.userbean != null ? res.data.userbean : _this4.userInfo.integral;
+          _this4.userInfo.signin.today_is_signin = true;
+          _this4.setShowDao();
+          _this4.login(_this4.userInfo);
         }
         // uni.showToast({
         // 	title:res.msg
@@ -405,7 +409,7 @@ var validate = __webpack_require__(/*! ../../common/extend/validate.js */ 86);va
     bindContent: function bindContent(e) {
       this.content = e.detail.value;
     },
-    popupFormSubmit: function popupFormSubmit(e) {var _this4 = this;
+    popupFormSubmit: function popupFormSubmit(e) {var _this5 = this;
       var formData = e.detail.value;
       var rule = [
       { name: "content", checkType: "notnull", checkRule: "", errorMsg: "请输入您的建议/意见" }];
@@ -434,7 +438,7 @@ var validate = __webpack_require__(/*! ../../common/extend/validate.js */ 86);va
             showCancel: false });
 
         }
-        _this4.togglePopupForm('close');
+        _this5.togglePopupForm('close');
       }).catch(function (error) {
         uni.hideLoading();
         console.log(error);

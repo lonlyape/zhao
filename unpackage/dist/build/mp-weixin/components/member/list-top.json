@@ -6,6 +6,7 @@
     "cheng-bao": "/components/member/annotation/chengbao",
     "gczh": "/components/member/annotation/gczh",
     "gczp": "/components/member/annotation/gczp",
+    "remind": "/components/remind",
     "er-shou": "/components/member/annotation/ershou",
     "cailiao": "/components/member/annotation/cailiao"
   }

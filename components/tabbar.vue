@@ -81,7 +81,7 @@
 					title:'建筑工人发布找活',
 					path:'/pages/member/publish-zhaohuo'
 				},{
-					title:'工厂发布找活',
+					title:'厂工发布找活',
 					path:'/pages/member/publish-gczh'
 				}]
 				this.listList=list

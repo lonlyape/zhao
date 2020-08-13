@@ -366,7 +366,7 @@ __webpack_require__.r(__webpack_exports__);
         status: 'more',
         url: this.api.getWorkList + '?type=5' },
       {
-        tabName: '找工人',
+        tabName: '找厂工',
         list: [],
         page: 1,
         pageSize: 10,
@@ -395,8 +395,12 @@ __webpack_require__.r(__webpack_exports__);
                   page: dataObj.page++ },
                 _this2.params);
 
+                if (alive == 0 && params.team_id) {
+                  params.team = params.team_id;
+                  delete params.team_id;
+                }
                 //请求前动作
-                dataObj.status = 'loading';_context.next = 6;return (
+                dataObj.status = 'loading';_context.next = 7;return (
 
                   _this2.request.get(dataObj.url, {
                     data: params }).
@@ -436,7 +440,7 @@ __webpack_require__.r(__webpack_exports__);
                       }
                       dataObj.status = 'nomore';
                     }
-                  }));case 6:case "end":return _context.stop();}}}, _callee);}))();
+                  }));case 7:case "end":return _context.stop();}}}, _callee);}))();
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

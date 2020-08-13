@@ -464,10 +464,10 @@ var _default =
           return '班组/单位';
           break;
         case 'gczp':
-          return '班组/单位';
+          return '招聘人数';
           break;
         case 'zhaohuo':
-          return '建筑工人/厂工';
+          return '班组/单位';
           break;
         case 'zhaogong':
           return '建筑工人/厂工';
