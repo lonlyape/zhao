@@ -83,6 +83,7 @@
 				<view class="close" v-on:click="setShowDao">关闭</view>
 			</view>
 		</view>
+		<remind ref="remind"></remind>
 	</view>
 </template>
 <script>
@@ -93,10 +94,12 @@
 	} from 'vuex';
 	import popupLogin from '@/components/popup-login';
 	import tabBar from '@/components/tabbar.vue'
+	import remind from '@/components/remind.vue'
 	var validate = require("../../common/extend/validate.js");
 	export default {
 		components: {
 			cell,
+			remind,
 			tabBar,
 			popupLogin,
 		},
@@ -184,13 +187,14 @@
 								url:urlArray[e.tapIndex]
 							})
 						}else{
-							uni.showModal({
-								title:'提示',
-								content:'材料发布请联系官方',
-								success:(e=>{
-									console.log(e)
-								})
-							})
+							// uni.showModal({
+							// 	title:'提示',
+							// 	content:'材料发布请联系官方',
+							// 	success:(e=>{
+							// 		console.log(e)
+							// 	})
+							// })
+							this.$refs.remind.setShowMask(true)
 						}
 					},fail: (e) => {
 						console.log('fail:',e)

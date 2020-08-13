@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "已发布二手交易",
+  "navigationBarTitleText": "已发布材料信息",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "list-top": "/components/member/list-top"

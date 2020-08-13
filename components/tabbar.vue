@@ -65,7 +65,7 @@
 						url:e.pagePath
 					})
 				}else{
-					if(e.text=='发布'){
+					if(e.text=='发布招工'){
 						this.showFlexBox=true
 					}else{
 						this.showListBox=true
@@ -81,7 +81,7 @@
 					title:'建筑工人发布找活',
 					path:'/pages/member/publish-zhaohuo'
 				},{
-					title:'工厂发布找活',
+					title:'厂工发布找活',
 					path:'/pages/member/publish-gczh'
 				}]
 				this.listList=list
