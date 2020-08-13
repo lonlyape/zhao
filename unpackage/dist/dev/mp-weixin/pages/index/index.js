@@ -253,7 +253,7 @@ __webpack_require__.r(__webpack_exports__);
           this.fileOption = {
             type: 'chengbao',
             isRequireTeam: true,
-            isRequireCate: true,
+            isRequireCate: false,
             isClearChooseParam: false };
 
           break;

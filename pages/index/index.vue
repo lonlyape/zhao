@@ -114,7 +114,7 @@
 						this.fileOption = {
 							type: 'chengbao',
 							isRequireTeam: true,
-							isRequireCate: true,
+							isRequireCate: false,
 							isClearChooseParam: false,
 						}
 						break
