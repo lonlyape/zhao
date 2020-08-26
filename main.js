@@ -8,9 +8,9 @@ import store from './store'
 import '@/common/filter.js'
 
 // http://laoban.zomsky.com/
-const api_url = 'http://laoban.zomsky.com';
+// const api_url = 'http://laoban.zomsky.com';
 // const api_url = 'http://www.zhaobossshop.net';
-// const api_url = 'https://www.zhaobossshop.net';
+const api_url = 'https://www.zhaobossshop.net';
 // const api_url = 'http://attractboss.io:88';
 // 全局配置
 request.setConfig({

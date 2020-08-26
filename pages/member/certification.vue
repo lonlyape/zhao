@@ -50,11 +50,11 @@
 					<popup-cate headerTitle="请选择专业工种" cateType="zhaohuo" overstepLengthTips="专业工种" chooseLength="5" :defaultSelectedVal="cateId" :defaultSelectedName="cateName" @close="togglePopup" @click="confirmCateChoose"></popup-cate>
 				</uni-popup>
 			</view>
-			<view style="padding:30upx;margin-top:20upx;background: #FFFFFF;line-height: 2;">
+			<!-- <view style="padding:30upx;margin-top:20upx;background: #FFFFFF;line-height: 2;">
 				<text style="background-color: #f52626;color: #FFFFFF;padding:10upx;">拍摄身份证要求</text>
 				<view style="margin-top:20upx;font-size:28upx;">上传前，先按示范拍好两张照片，一张单独的身份证正面照，一张真人头像同身份证的合影照片。</view>
-			</view>
-			<view class="form-group" style="height:280upx;margin-top:20upx;text-align: center;padding-top:20upx;">
+			</view> -->
+			<!-- <view class="form-group" style="height:280upx;margin-top:20upx;text-align: center;padding-top:20upx;">
 				<view style="width:50%;height:100%;">
 					<image :src="o_id_card_img || '../../static/idcard-z.png'" mode="aspectFit" style="width:100%;height:80%;" @click="chooseImage('id_card_img')"></image>
 					<text>请上传身份证正面照片</text>
@@ -65,8 +65,11 @@
 					<text>请上传手持身份证照片</text>
 					<input class="hidden" name="hand_id_card_img" :value="hand_id_card_img">
 				</view>
-			</view>
+			</view> -->
 			<view class="form-group">
+				<input class="hidden" name="id_card_img" :value="'null'">
+				<input class="hidden" name="hand_id_card_img" :value="'null'">
+				<!-- <input class="hidden" type="idcard" placeholder="请输入身份证号" name="id_card" maxlength="18" :value="'null'"></input> -->
 				<input class="hidden" name="user_id" :value="userInfo.uid">
 				<input class="hidden" name="id" :value="data.id" v-if="data.id">
 				<button type="default" formType="submit" class="submit-btn">立即提交</button>

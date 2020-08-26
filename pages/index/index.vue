@@ -114,7 +114,7 @@
 						this.fileOption = {
 							type: 'chengbao',
 							isRequireTeam: true,
-							isRequireCate: true,
+							isRequireCate: false,
 							isClearChooseParam: false,
 						}
 						break
@@ -303,6 +303,12 @@
 					}
 				})
 			},
+		},
+		onShareAppMessage(res) {
+			return {
+				title: '全国建筑工程承包 找活 招工',
+				path: '/pages/index/index'
+			}
 		}
 	}
 </script>

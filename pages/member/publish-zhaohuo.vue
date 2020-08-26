@@ -40,7 +40,7 @@
 				<view class="view-textarea" v-else>{{textAreaContent}}</view>
 			</view>
 			<upload-image length="6" tips="可上传做过的工程照片、完工现场照片等" @getImageUrl="getImageUrl"></upload-image>
-			<upload-image title="上传身份证" length="1" tips="可上传做过的工程照片、完工现场照片等" @getImageUrl="getIdCardImageUrl"></upload-image>
+			<upload-image title="上传凭证" length="1" tips="可上传做过的工程照片、完工现场照片等" @getImageUrl="getIdCardImageUrl"></upload-image>
 			<publish-tcp @result="getPublishTcpValue" tcpType="zhaohuo" v-if="tcpStatus"></publish-tcp>
 			<view class="form-group form-button_box">
 				<input type="text" name="type" class="hidden" value="2" />

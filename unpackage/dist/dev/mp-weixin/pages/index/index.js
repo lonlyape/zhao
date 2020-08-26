@@ -253,7 +253,7 @@ __webpack_require__.r(__webpack_exports__);
           this.fileOption = {
             type: 'chengbao',
             isRequireTeam: true,
-            isRequireCate: true,
+            isRequireCate: false,
             isClearChooseParam: false };
 
           break;
@@ -441,7 +441,14 @@ __webpack_require__.r(__webpack_exports__);
                       dataObj.status = 'nomore';
                     }
                   }));case 7:case "end":return _context.stop();}}}, _callee);}))();
-    } } };exports.default = _default;
+    } },
+
+  onShareAppMessage: function onShareAppMessage(res) {
+    return {
+      title: '全国建筑工程承包 找活 招工',
+      path: '/pages/index/index' };
+
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

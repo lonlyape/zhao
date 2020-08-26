@@ -35,7 +35,7 @@
 				<textarea v-if="isTextAreaShow" @input="bindTextArea" :value="textAreaContent" name="content" maxlength="750" placeholder="请输入详情（如会做什么、工作经历、期望工资、期望结款方式/周期等），有助于您更快、更准确的找到好工作~"/>
 				<view class="view-textarea" v-else>{{textAreaContent}}</view>
 			</view>
-			<upload-image length="1" title="身份证信息" tips="请上传手持身份证照片,身份证信息只用于平台内部审核,不会对外展示" :dataId="data.id" :imageStr="data.more.hand_id_card" more_file_name="hand_id_card"></upload-image>	
+			<upload-image length="1" title="身份凭证" :dataId="data.id" :imageStr="data.more.hand_id_card" more_file_name="hand_id_card"></upload-image>	
 			<upload-image length="6" tips="可上传做过的工程照片、完工现场照片等" :dataId="data.id" :image="data.image"></upload-image>
 			<view class="form-group form-button_box">
 				<input type="text" name="id" class="hidden" :value="data.id" />

@@ -293,6 +293,12 @@ var validate = __webpack_require__(/*! ../../common/extend/validate.js */ 86);va
       });
     }
   },
+  onShareAppMessage: function onShareAppMessage(res) {
+    return {
+      title: '全国建筑工程承包 找活 招工',
+      path: "/pages/member/index" };
+
+  },
   methods: _objectSpread({},
   (0, _vuex.mapMutations)(['login', 'logout', 'checkBindAccount']), {
     showLogin: function showLogin() {
@@ -454,7 +460,14 @@ var validate = __webpack_require__(/*! ../../common/extend/validate.js */ 86);va
 
       [{
         title: '实名认证',
-        path: 'certification',
+        // path: 'certification',
+        fun: function fun() {
+          uni.showModal({
+            title: "提示",
+            content: '请往PC端进行实名认证',
+            showCancel: false });
+
+        },
         icon: '../../static/dai_2/user_icon_2.jpg' },
       {
         title: '豆币记录',

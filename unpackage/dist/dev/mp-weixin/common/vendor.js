@@ -760,7 +760,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1588,6 +1588,148 @@ wx.createComponent = createComponent;
 var uni$1 = uni;var _default =
 
 uni$1;exports.default = _default;
+
+/***/ }),
+
+/***/ 103:
+/*!***************************************************!*\
+  !*** D:/mycode/zhao/common/extend/image-tools.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.pathToBase64 = pathToBase64;exports.base64ToPath = base64ToPath; /**
+                                                                                                                                                     * http://ext.dcloud.net.cn/plugin?id=123
+                                                                                                                                                     */
+function getLocalFilePath(path) {
+  if (path.indexOf('_www') === 0 || path.indexOf('_doc') === 0 || path.indexOf('_documents') === 0 || path.indexOf('_downloads') === 0) {
+    return path;
+  }
+  if (path.indexOf('file://') === 0) {
+    return path;
+  }
+  if (path.indexOf('/storage/emulated/0/') === 0) {
+    return path;
+  }
+  if (path.indexOf('/') === 0) {
+    var localFilePath = plus.io.convertAbsoluteFileSystem(path);
+    if (localFilePath !== path) {
+      return localFilePath;
+    } else {
+      path = path.substr(1);
+    }
+  }
+  return '_www/' + path;
+}
+
+function pathToBase64(path) {
+  return new Promise(function (resolve, reject) {
+    if (typeof window === 'object' && 'document' in window) {
+      var canvas = document.createElement('canvas');
+      var c2x = canvas.getContext('2d');
+      var img = new Image();
+      img.onload = function () {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        c2x.drawImage(img, 0, 0);
+        resolve(canvas.toDataURL());
+      };
+      img.onerror = reject;
+      img.src = path;
+      return;
+    }
+    if (typeof plus === 'object') {
+      plus.io.resolveLocalFileSystemURL(getLocalFilePath(path), function (entry) {
+        entry.file(function (file) {
+          var fileReader = new plus.io.FileReader();
+          fileReader.onload = function (data) {
+            resolve(data.target.result);
+          };
+          fileReader.onerror = function (error) {
+            reject(error);
+          };
+          fileReader.readAsDataURL(file);
+        }, function (error) {
+          reject(error);
+        });
+      }, function (error) {
+        reject(error);
+      });
+      return;
+    }
+    if (typeof wx === 'object' && wx.canIUse('getFileSystemManager')) {
+      wx.getFileSystemManager().readFile({
+        filePath: path,
+        encoding: 'base64',
+        success: function success(res) {
+          resolve('data:image/jpeg;base64,' + res.data);
+        },
+        fail: function fail(error) {
+          reject(error);
+        } });
+
+      return;
+    }
+    reject(new Error('not support'));
+  });
+}
+
+function base64ToPath(base64) {
+  return new Promise(function (resolve, reject) {
+    if (typeof window === 'object' && 'document' in window) {
+      base64 = base64.split(',');
+      var type = base64[0].match(/:(.*?);/)[1];
+      var str = atob(base64[1]);
+      var n = str.length;
+      var array = new Uint8Array(n);
+      while (n--) {
+        array[n] = str.charCodeAt(n);
+      }
+      return resolve((window.URL || window.webkitURL).createObjectURL(new Blob([array], { type: type })));
+    }
+    var extName = base64.match(/data\:\S+\/(\S+);/);
+    if (extName) {
+      extName = extName[1];
+    } else {
+      reject(new Error('base64 error'));
+    }
+    var fileName = Date.now() + '.' + extName;
+    if (typeof plus === 'object') {
+      var bitmap = new plus.nativeObj.Bitmap('bitmap' + Date.now());
+      bitmap.loadBase64Data(base64, function () {
+        var filePath = '_doc/uniapp_temp/' + fileName;
+        bitmap.save(filePath, {}, function () {
+          bitmap.clear();
+          resolve(filePath);
+        }, function (error) {
+          bitmap.clear();
+          reject(error);
+        });
+      }, function (error) {
+        bitmap.clear();
+        reject(error);
+      });
+      return;
+    }
+    if (typeof wx === 'object' && wx.canIUse('getFileSystemManager')) {
+      var filePath = wx.env.USER_DATA_PATH + '/' + fileName;
+      wx.getFileSystemManager().writeFile({
+        filePath: filePath,
+        data: base64.replace(/^data:\S+\/\S+;base64,/, ''),
+        encoding: 'base64',
+        success: function success() {
+          resolve(filePath);
+        },
+        fail: function fail(error) {
+          reject(error);
+        } });
+
+      return;
+    }
+    reject(new Error('not support'));
+  });
+}
 
 /***/ }),
 
@@ -8584,7 +8726,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8605,14 +8747,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8697,7 +8839,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9094,148 +9236,6 @@ internalMixin(Vue);
 /* harmony default export */ __webpack_exports__["default"] = (Vue);
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ 3)))
-
-/***/ }),
-
-/***/ 263:
-/*!***************************************************!*\
-  !*** D:/mycode/zhao/common/extend/image-tools.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.pathToBase64 = pathToBase64;exports.base64ToPath = base64ToPath; /**
-                                                                                                                                                     * http://ext.dcloud.net.cn/plugin?id=123
-                                                                                                                                                     */
-function getLocalFilePath(path) {
-  if (path.indexOf('_www') === 0 || path.indexOf('_doc') === 0 || path.indexOf('_documents') === 0 || path.indexOf('_downloads') === 0) {
-    return path;
-  }
-  if (path.indexOf('file://') === 0) {
-    return path;
-  }
-  if (path.indexOf('/storage/emulated/0/') === 0) {
-    return path;
-  }
-  if (path.indexOf('/') === 0) {
-    var localFilePath = plus.io.convertAbsoluteFileSystem(path);
-    if (localFilePath !== path) {
-      return localFilePath;
-    } else {
-      path = path.substr(1);
-    }
-  }
-  return '_www/' + path;
-}
-
-function pathToBase64(path) {
-  return new Promise(function (resolve, reject) {
-    if (typeof window === 'object' && 'document' in window) {
-      var canvas = document.createElement('canvas');
-      var c2x = canvas.getContext('2d');
-      var img = new Image();
-      img.onload = function () {
-        canvas.width = img.width;
-        canvas.height = img.height;
-        c2x.drawImage(img, 0, 0);
-        resolve(canvas.toDataURL());
-      };
-      img.onerror = reject;
-      img.src = path;
-      return;
-    }
-    if (typeof plus === 'object') {
-      plus.io.resolveLocalFileSystemURL(getLocalFilePath(path), function (entry) {
-        entry.file(function (file) {
-          var fileReader = new plus.io.FileReader();
-          fileReader.onload = function (data) {
-            resolve(data.target.result);
-          };
-          fileReader.onerror = function (error) {
-            reject(error);
-          };
-          fileReader.readAsDataURL(file);
-        }, function (error) {
-          reject(error);
-        });
-      }, function (error) {
-        reject(error);
-      });
-      return;
-    }
-    if (typeof wx === 'object' && wx.canIUse('getFileSystemManager')) {
-      wx.getFileSystemManager().readFile({
-        filePath: path,
-        encoding: 'base64',
-        success: function success(res) {
-          resolve('data:image/jpeg;base64,' + res.data);
-        },
-        fail: function fail(error) {
-          reject(error);
-        } });
-
-      return;
-    }
-    reject(new Error('not support'));
-  });
-}
-
-function base64ToPath(base64) {
-  return new Promise(function (resolve, reject) {
-    if (typeof window === 'object' && 'document' in window) {
-      base64 = base64.split(',');
-      var type = base64[0].match(/:(.*?);/)[1];
-      var str = atob(base64[1]);
-      var n = str.length;
-      var array = new Uint8Array(n);
-      while (n--) {
-        array[n] = str.charCodeAt(n);
-      }
-      return resolve((window.URL || window.webkitURL).createObjectURL(new Blob([array], { type: type })));
-    }
-    var extName = base64.match(/data\:\S+\/(\S+);/);
-    if (extName) {
-      extName = extName[1];
-    } else {
-      reject(new Error('base64 error'));
-    }
-    var fileName = Date.now() + '.' + extName;
-    if (typeof plus === 'object') {
-      var bitmap = new plus.nativeObj.Bitmap('bitmap' + Date.now());
-      bitmap.loadBase64Data(base64, function () {
-        var filePath = '_doc/uniapp_temp/' + fileName;
-        bitmap.save(filePath, {}, function () {
-          bitmap.clear();
-          resolve(filePath);
-        }, function (error) {
-          bitmap.clear();
-          reject(error);
-        });
-      }, function (error) {
-        bitmap.clear();
-        reject(error);
-      });
-      return;
-    }
-    if (typeof wx === 'object' && wx.canIUse('getFileSystemManager')) {
-      var filePath = wx.env.USER_DATA_PATH + '/' + fileName;
-      wx.getFileSystemManager().writeFile({
-        filePath: filePath,
-        data: base64.replace(/^data:\S+\/\S+;base64,/, ''),
-        encoding: 'base64',
-        success: function success() {
-          resolve(filePath);
-        },
-        fail: function fail(error) {
-          reject(error);
-        } });
-
-      return;
-    }
-    reject(new Error('not support'));
-  });
-}
 
 /***/ }),
 

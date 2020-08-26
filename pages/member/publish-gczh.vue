@@ -13,7 +13,7 @@
 			<view class="form-group">
 				<view class="title">接活区域</view>
 				<input placeholder="请选择接活区域" :value="regionName" disabled="true" @click="togglePopup('open','region_id')"></input>
-				<input type="text" :value="regionId" name="region_id" class="hidden"/>
+				<input type="text" :value="regionId" name="region_id" class="hidden" />
 				<uni-popup ref="region_id" :custom="true">
 					<popup-region headerTitle="请选择接活区域" overstepLengthTips="接活区域" chooseLength="3" @close="togglePopup" @click="confirmRegionChoose"></popup-region>
 				</uni-popup>
@@ -21,7 +21,7 @@
 			<view class="form-group">
 				<view class="title">联系人</view>
 				<input type="text" name="contact" placeholder="请输入联系人" :value="userInfo.name">
-			</view>
+			</view><strong></strong>
 			<view class="form-group">
 				<view class="title">联系电话</view>
 				<input type="text" name="phone" placeholder="请输入联系电话" maxlength="11" :value="userInfo.account">
@@ -32,10 +32,11 @@
 			</view>
 			<view class="xq-title">厂工详情</view>
 			<view class="form-group" style="border:none;">
-				<textarea v-if="isTextAreaShow" @input="bindTextArea" :value="textAreaContent" name="content" maxlength="750" placeholder="请输入详情（如会做什么、工作经历、期望工资、期望结款方式/周期等），有助于您更快、更准确的找到好工作~"/>
+				<textarea v-if="isTextAreaShow" @input="bindTextArea" :value="textAreaContent" name="content" maxlength="750"
+				 placeholder="请输入详情（如会做什么、工作经历、期望工资、期望结款方式/周期等），有助于您更快、更准确的找到好工作~" />
 				<view class="view-textarea" v-else>{{textAreaContent}}</view>
 			</view>
-			<upload-image length="1" title="身份证信息" tips="请上传手持身份证照片,身份证信息只用于平台内部审核,不会对外展示" @getImageUrl="getIdCardInfo"></upload-image>
+			<upload-image length="1" title="上传凭证" @getImageUrl="getIdCardInfo"></upload-image>
 			<upload-image length="6" tips="可上传做过的工程照片、完工现场照片等" @getImageUrl="getImageUrl"></upload-image>
 			<publish-tcp @result="getPublishTcpValue" tcpType="zhaohuo" v-if="tcpStatus"></publish-tcp>
 			<view class="form-group form-button_box">

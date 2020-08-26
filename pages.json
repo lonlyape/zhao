@@ -70,6 +70,11 @@
 			"navigationBarTitleText": "修改资料"
 		}
 	}, {
+		"path": "pages/member/certification",
+		"style": {
+			"navigationBarTitleText": "实名认证"
+		}
+	}, {
 		"path": "pages/member/publish-chengbao",
 		"style": {
 			"navigationBarTitleText": "发布工程承包"
@@ -191,11 +196,6 @@
 		"style": {
 			"navigationBarTitleText": "豆币记录",
 			"enablePullDownRefresh": true
-		}
-	}, {
-		"path": "pages/member/certification",
-		"style": {
-			"navigationBarTitleText": "实名认证"
 		}
 	}, {
 		"path": "pages/common/login",
