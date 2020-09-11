@@ -38,12 +38,12 @@
 				<view class="view-textarea" v-else>{{textAreaContent}}</view>
 			</view>
 			<upload-image length="6" tips="可上传做过的工程照片、完工现场照片等" :dataId="data.id" :image="data.image"></upload-image>
-			<upload-image title="上传凭证" length="1" @getImageUrl="getIdCardImageUrl" :dataId="data.id" :image="[data.more.hand_id_card]" more_file_name="hand_id_card"></upload-image>
+			<!-- <upload-image title="上传凭证" length="1" @getImageUrl="getIdCardImageUrl" :dataId="data.id" :image="[data.more.hand_id_card]" more_file_name="hand_id_card"></upload-image> -->
 			<view class="form-group form-button_box">
 				<input type="text" name="id" class="hidden" :value="data.id" />
 				<input type="text" name="type" class="hidden" :value="data.type" />
 				<input type="text" name="user_id" class="hidden" :value="userInfo.uid" />
-				<input type="text" class="hidden" name="hand_id_card_url" maxlength="-1" :value="idCardImageList"/>
+				<!-- <input type="text" class="hidden" name="hand_id_card_url" maxlength="-1" :value="idCardImageList"/> -->
 				<button type="default" formType="submit" class="submit-btn">立即修改</button>
 			</view>
 		</form>
