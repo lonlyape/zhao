@@ -3,8 +3,8 @@
 		<zhao-huo></zhao-huo>
 		<form @submit="formSubmit" @reset="formReset">
 			<view class="form-group">
-				<view class="title">标题</view>
-				<input placeholder="请输入标题" name="title"></input>
+				<view class="title">找活需求</view>
+				<input placeholder="请输入找活需求" name="title"></input>
 			</view>
 			<view class="form-group">
 				<view class="title">专业工种</view>
@@ -39,7 +39,7 @@
 				 placeholder="请输入找活详情（如会做什么、工作经历、期望工资、期望结款方式/周期等），有助于您更快、更准确的找到好工作~" />
 				<view class="view-textarea" v-else>{{textAreaContent}}</view>
 			</view>
-			<upload-image length="6" tips="可上传做过的工程照片、完工现场照片等" @getImageUrl="getImageUrl"></upload-image>
+			<upload-image title="上传工程照片" length="6" tips="可上传做过的工程照片、完工现场照片等" @getImageUrl="getImageUrl"></upload-image>
 			<!-- <upload-image title="上传凭证" length="1" tips="可上传做过的工程照片、完工现场照片等" @getImageUrl="getIdCardImageUrl"></upload-image> -->
 			<publish-tcp @result="getPublishTcpValue" tcpType="zhaohuo" v-if="tcpStatus"></publish-tcp>
 			<view class="form-group form-button_box">
