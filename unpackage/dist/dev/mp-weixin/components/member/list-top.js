@@ -156,7 +156,7 @@ __webpack_require__.r(__webpack_exports__);
         name: "已发布工程承包",
         type: "chengbao",
         url: "publish-chengbao-list",
-        img: "published-zh" },
+        img: "published-cb" },
       {
         name: "已发布招工信息",
         type: "zhaogong",
@@ -176,19 +176,19 @@ __webpack_require__.r(__webpack_exports__);
         name: "已发布工厂直聘",
         type: "gczp",
         url: "publish-gczp-list",
-        img: "published-ershou" }
+        img: "published-gczp" }
 
       /* ,{
-                                  						name:"已发布二手交易",
-                                  						type:"ershou",
-                                  						url:"publish-ershou-list",
-                                  						img:"published-ershou"
-                                  					} */,
+                                						name:"已发布二手交易",
+                                						type:"ershou",
+                                						url:"publish-ershou-list",
+                                						img:"published-ershou"
+                                					} */,
       {
         name: "已发布材料",
         type: "cailiao",
         url: "publish-cailiao-list",
-        img: "published-ershou" }] };
+        img: "published-cailiao" }] };
 
 
 
