@@ -47,9 +47,17 @@
   background-color: white;
   -webkit-flex-wrap: wrap;
           flex-wrap: wrap;
+  padding: 0 6rpx;
 }
 .tab-wrap .tab-item {
+  width: 33.33%;
   padding: 20rpx 5rpx;
+}
+.tab-wrap .tab-item:nth-of-type(3n) {
+  text-align: right;
+}
+.tab-wrap .tab-item:nth-of-type(3n-1) {
+  text-align: center;
 }
 .tab-wrap .tab-item text {
   vertical-align: super;

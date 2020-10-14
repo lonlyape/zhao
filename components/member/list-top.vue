@@ -69,7 +69,7 @@
 											img:"published-ershou"
 										} */
 					, {
-						name: "已发布材料",
+						name: "已发布材料信息",
 						type: "cailiao",
 						url: "publish-cailiao-list",
 						img: "published-cailiao"
@@ -188,9 +188,17 @@
 		align-content: center;
 		background-color: white;
 		flex-wrap: wrap;
+		padding: 0 6rpx;
 
 		.tab-item {
+			width:33.33%;
 			padding: 20upx 5upx;
+			&:nth-of-type(3n){
+				text-align: right;
+			}
+			&:nth-of-type(3n-1){
+				text-align: center;
+			}
 
 			text {
 				vertical-align: super;

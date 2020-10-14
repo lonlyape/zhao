@@ -185,7 +185,7 @@ __webpack_require__.r(__webpack_exports__);
                                 						img:"published-ershou"
                                 					} */,
       {
-        name: "已发布材料",
+        name: "已发布材料信息",
         type: "cailiao",
         url: "publish-cailiao-list",
         img: "published-cailiao" }] };
