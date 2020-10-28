@@ -112,7 +112,7 @@
 .detail_item .content.data-v-1fb2ee68 {
   padding: 20rpx 30rpx;
   line-height: 38rpx;
-  color: #8c8c8c;
+  color: #212121;
 }
 .detail_item .content .text_c + .img_c.data-v-1fb2ee68 {
   margin-top: 2%;

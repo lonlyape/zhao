@@ -321,7 +321,7 @@
 		.content {
 			padding: 20rpx 30rpx;
 			line-height: 38rpx;
-			color: #8c8c8c;
+			color: #212121;
 
 			.text_c {
 				+.img_c {

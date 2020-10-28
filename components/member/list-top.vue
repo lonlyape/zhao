@@ -52,7 +52,7 @@
 						url: "publish-zhaohuo-list",
 						img: "published-zh"
 					}, {
-						name: "已发布找厂工信息",
+						name: "已发布厂工信息",
 						type: "gczh",
 						url: "publish-gczh-list",
 						img: "published-ershou"

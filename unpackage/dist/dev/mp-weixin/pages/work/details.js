@@ -161,15 +161,15 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
     },
     type: function type() {
       var datas = this.datas;
-      return datas.type;
+      return datas ? datas.type : '';
     },
     user: function user() {
       var datas = this.datas;
-      var user = datas.user || {};
+      var user = datas ? datas.user : {};
       return _objectSpread({},
       user, {
-        phone: datas.phone,
-        contact: datas.contact });
+        phone: datas && datas.phone,
+        contact: datas && datas.contact });
 
     },
     detailList: function detailList() {
@@ -195,13 +195,13 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
         default:
           title = '详情';}
 
-      if (datas.content) {
+      if (datas && datas.content) {
         list.push({
           title: title,
           content: datas.content });
 
       }
-      if (datas.image) {
+      if (datas && datas.image) {
         list.push({
           title: '图片',
           img: datas.image });
@@ -213,11 +213,14 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
       var list = [];
       var l = [];
       var datas = this.datas;
-      var more = datas.more || {};
+      var more = datas && datas.more || {};
       switch (this.type) {
         case 1:
           if (datas.region) {
             l.push(this.setCell('招工地区', datas.region));
+          }
+          if (more.xinzi_text) {
+            l.push(this.setCell('薪资', more.xinzi_text + more.xinzileixing_text));
           }
           if (datas.type != 5 && datas.work_cate) {
             var label = '所需工种';
@@ -243,7 +246,7 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
 
           break;
         case 2:
-          if (datas.region) {
+          if (datas && datas.region) {
             l.push(this.setCell('可去地区', datas.region));
           }
           if (datas.type != 5 && datas.work_cate) {
